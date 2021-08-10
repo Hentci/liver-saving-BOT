@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         dark team (for angel or light)
+// @name         slimefarm
 // @namespace    http://tampermonkey.net/
 // @version      0.1
 // @description  try to take over the world!
@@ -90,11 +90,24 @@ async function doSkill(maxLoop, characterPath, abilityPath) {
 }
 
 function quest() {
-    $("#cnt-quest > div.prt-supporter-list.prt-module > div:nth-child(3) > div:nth-child(5) > div.prt-button-cover").trigger("tap");
+    const checkQueBtn = () => $("#cnt-quest > div.prt-supporter-list.prt-module > div:nth-child(9) > div:nth-child(1) > div.prt-button-cover").length === 1;
+    const maxLoop = 50;
+    let loopCount = 0;
+    const func = () => {
+        loopCount++;
 
-    setTimeout(() => {
-        $("#wrapper > div.contents > div.pop-deck.supporter > div.prt-btn-deck > div.btn-usual-ok.se-quest-start").trigger("tap");
-    }, 3000);
+        if(checkQueBtn()) {
+            $("#cnt-quest > div.prt-supporter-list.prt-module > div:nth-child(9) > div:nth-child(1) > div.prt-button-cover").trigger("tap");
+
+            setTimeout(() => {
+                $("#wrapper > div.contents > div.pop-deck.supporter > div.prt-btn-deck > div.btn-usual-ok.se-quest-start").trigger("tap");
+            }, 3000);
+        } else if(loopCount < maxLoop){
+            setTimeout(func, 100);
+        }
+    }
+    
+    func();
 }
 
 // $("#prt-command-top > div > div > div.lis-character0.btn-command-character > img").trigger("tap");
