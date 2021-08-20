@@ -100,7 +100,7 @@ function quest() {
             $("#cnt-quest > div.prt-supporter-list.prt-module > div:nth-child(3) > div:nth-child(4) > div.prt-button-cover").trigger("tap");
 
             setTimeout(() => {
-                $("#wrapper > div.contents > div.pop-deck.supporter > div.prt-btn-deck > div.btn-usual-ok.se-quest-start").trigger("tap");
+                $("#cnt-quest > div.pop-deck.supporter > div.prt-btn-deck > div.btn-usual-ok.se-quest-start").trigger("tap");
             }, 3000);
         } else if(loopCount < maxLoop){
             setTimeout(func, 100);
