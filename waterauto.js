@@ -22,14 +22,14 @@ i.style.display = 'none';
 document.body.appendChild(i);
 window.console = i.contentWindow.console;
 function quest() {
-    const checkQueBtn = () => $("#cnt-quest > div.prt-supporter-list.prt-module > div:nth-child(5) > div:nth-child(3) > div.prt-button-cover").length === 1;
+    const checkQueBtn = () => $("#cnt-quest > div.prt-supporter-list.prt-module > div:nth-child(5) > div:nth-child(1) > div.prt-button-cover").length === 1;
     const maxLoop = 50;
     let loopCount = 0;
     const func = () => {
         loopCount++;
 
         if(checkQueBtn()) {
-            $("#cnt-quest > div.prt-supporter-list.prt-module > div:nth-child(5) > div:nth-child(3) > div.prt-button-cover").trigger("tap");
+            $("#cnt-quest > div.prt-supporter-list.prt-module > div:nth-child(5) > div:nth-child(1) > div.prt-button-cover").trigger("tap");
 
             setTimeout(() => {
                 $("#cnt-quest > div.pop-deck.supporter > div.prt-btn-deck > div.btn-usual-ok.se-quest-start").trigger("tap");
