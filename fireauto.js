@@ -30,9 +30,9 @@ function quest() {
 
         if(checkQueBtn()) {
             $("#cnt-quest > div.prt-supporter-list.prt-module > div:nth-child(4) > div:nth-child(2) > div.prt-button-cover").trigger("tap");
-
+            
             setTimeout(() => {
-                $("#cnt-quest > div.pop-deck.supporter > div.prt-btn-deck > div.btn-usual-ok.se-quest-start").trigger("tap");
+                $("#wrapper > div.contents > div.pop-deck.supporter > div.prt-btn-deck > div.btn-usual-ok.se-quest-start").trigger("tap");
             }, 3000);
         } else if(loopCount < maxLoop){
             setTimeout(func, 100);
