@@ -32,13 +32,13 @@ function quest() {
             $("#cnt-quest > div.prt-supporter-list.prt-module > div:nth-child(9) > div:nth-child(1) > div.prt-button-cover").trigger("tap");
 
             setTimeout(() => {
-                $("#cnt-quest > div.pop-deck.supporter > div.prt-btn-deck > div.btn-usual-ok.se-quest-start").trigger("tap");
+                $("#wrapper > div.contents > div.pop-deck.supporter > div.prt-btn-deck > div.btn-usual-ok.se-quest-start").trigger("tap");
             }, 3000);
         } else if(loopCount < maxLoop){
             setTimeout(func, 100);
         }
     }
-    
+
     func();
 }
 
@@ -107,7 +107,7 @@ function run(last) {
 setTimeout(() => run(null), 2000);
 
 window.hentci = {
-    quest, 
+    quest,
     raid,
     result
 }
