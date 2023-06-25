@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         four-element_earth_with_boss
+// @name         four-element-water
 // @namespace    http://tampermonkey.net/
 // @version      0.1
 // @description  try to take over the world!
@@ -9,42 +9,35 @@
 // @grant        none
 // ==/UserScript==
 // 4 fire 5 water 6 7 8 9 dark 3
-
+// $("").trigger("tap");
 var i = document.createElement('iframe');
 i.style.display = 'none';
 document.body.appendChild(i);
 window.console = i.contentWindow.console;
 function quest() {
-    const checkQueBtn = () => $("#cnt-quest > div.prt-supporter-list.prt-module > div:nth-child(6) > div:nth-child(2) > div.prt-button-cover").length === 1;
-    const nxtCheckBtn = () => $("#wrapper > div.contents > div.pop-deck.supporter > div.prt-btn-deck > div.btn-usual-ok.btn-silent-se").length > 0;
+    const checkQueBtn = () => $("#cnt-quest > div.prt-supporter-list.prt-module > div:nth-child(5) > div:nth-child(1) > div.prt-button-cover").length === 1;
     const maxLoop = 50;
     let loopCount = 0;
     const func = () => {
         loopCount++;
 
         if(checkQueBtn()) {
-            $("#cnt-quest > div.prt-supporter-list.prt-module > div:nth-child(6) > div:nth-child(2) > div.prt-button-cover").trigger("tap");
+            $("#cnt-quest > div.prt-supporter-list.prt-module > div:nth-child(5) > div:nth-child(1) > div.prt-button-cover").trigger("tap");
 
             setTimeout(() => {
                 $("#wrapper > div.contents > div.pop-deck.supporter > div.prt-btn-deck > div.btn-usual-ok.se-quest-start").trigger("tap");
             }, 3000);
-
-            if(nxtCheckBtn()){
-                setTimeout(() => {
-                    $("#wrapper > div.contents > div.pop-deck.supporter > div.prt-btn-deck > div.btn-usual-ok.btn-silent-se").trigger("tap");
-                }, 3000);
-            }
-
         } else if(loopCount < maxLoop){
             setTimeout(func, 100);
         }
     }
-
+    
     func();
 }
 
 function raid() {
-    const checkAttBtn = () => $("#cnt-raid-information > div.btn-attack-start.display-on").length === 1;
+
+    const checkBGBtn = () => $("#wrapper > div.contents > div.cnt-raid > div.prt-start-direction > div.prt-black-bg").length === 1;
 
     const maxLoop = 50;
     let loopCount = 0;
@@ -52,12 +45,12 @@ function raid() {
     const func = () => {
         loopCount++;
 
-        if (checkAttBtn()) {
-            $("#cnt-raid-information > div.btn-attack-start.display-on").trigger("tap");
+        if (checkBGBtn()) {
+            $("#wrapper > div.contents > div.cnt-raid > div.prt-start-direction > div.prt-black-bg").trigger("tap");
 
-            setTimeout(() => {
-                $("#wrapper > div.contents > div.cnt-raid > div.btn-auto").trigger("tap");
-            }, 1800);
+            // setTimeout(() => {
+            //     $("#wrapper > div.contents > div.cnt-raid > div.btn-auto").trigger("tap");
+            // }, 1800);
         } else if (loopCount < maxLoop) {
             setTimeout(func, 100);
         }
@@ -69,19 +62,17 @@ function raid() {
 function result() {
     const popOK = () => $("#pop > div > div.prt-popup-footer > div").trigger("tap");
     const checkPopBtn = () => $("#pop > div > div.prt-popup-footer > div").length > 0;
-    const checkNextBtn = () => $("#pop > div > div.prt-popup-footer > div.btn-usual-next").length > 0;
+    const checkBOSSexistBtn = () => $("#pop > div > div.prt-popup-footer > div.btn-usual-next.on").length > 0;
     const func = () => {
+        if (checkBOSSexistBtn()){
+            $("#pop > div > div.prt-popup-footer > div.btn-usual-next.on").trigger("tap");
+        }
         if (checkPopBtn()) {
             popOK();
             setTimeout(func, 3000);
         } else {
             setTimeout(() => {
                 $("#cnt-result > div.prt-result-cnt > div.prt-button-area.upper > div.btn-retry.cnt-quest").trigger("tap");
-            }, 5000);
-        }
-        if (checkNextBtn()){
-            setTimeout(() => {
-                $("#pop > div > div.prt-popup-footer > div.btn-usual-next").trigger("tap");
             }, 5000);
         }
     }
@@ -114,7 +105,7 @@ function run(last) {
 setTimeout(() => run(null), 2000);
 
 window.hentci = {
-    quest,
+    quest, 
     raid,
     result
 }
