@@ -22,10 +22,10 @@ function quest() {
         loopCount++;
 
         if(checkQueBtn()) {
-            $("#wrapper > div.contents > div.pop-deck.supporter > div.prt-btn-deck > div.btn-usual-ok.se-quest-start").trigger("tap");
+            $("#cnt-quest > div.prt-supporter-list.prt-module > div:nth-child(5) > div:nth-child(1) > div.prt-button-cover").trigger("tap");
 
             setTimeout(() => {
-                $("#cnt-quest > div.pop-deck.supporter > div.prt-btn-deck > div.btn-usual-ok.se-quest-start").trigger("tap");
+                $("#wrapper > div.contents > div.pop-deck.supporter > div.prt-btn-deck > div.btn-usual-ok.se-quest-start").trigger("tap");
             }, 3000);
         } else if(loopCount < maxLoop){
             setTimeout(func, 100);
@@ -36,7 +36,8 @@ function quest() {
 }
 
 function raid() {
-    const checkAttBtn = () => $("#cnt-raid-information > div.btn-attack-start.display-on").length === 1;
+
+    const checkBGBtn = () => $("#wrapper > div.contents > div.cnt-raid > div.prt-start-direction > div.prt-black-bg").length === 1;
 
     const maxLoop = 50;
     let loopCount = 0;
@@ -44,12 +45,12 @@ function raid() {
     const func = () => {
         loopCount++;
 
-        if (checkAttBtn()) {
-            $("#cnt-raid-information > div.btn-attack-start.display-on").trigger("tap");
+        if (checkBGBtn()) {
+            $("#wrapper > div.contents > div.cnt-raid > div.prt-start-direction > div.prt-black-bg").trigger("tap");
 
-            setTimeout(() => {
-                $("#wrapper > div.contents > div.cnt-raid > div.btn-auto").trigger("tap");
-            }, 1800);
+            // setTimeout(() => {
+            //     $("#wrapper > div.contents > div.cnt-raid > div.btn-auto").trigger("tap");
+            // }, 1800);
         } else if (loopCount < maxLoop) {
             setTimeout(func, 100);
         }
