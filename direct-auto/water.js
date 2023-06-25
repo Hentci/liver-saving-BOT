@@ -80,9 +80,16 @@ function raid() {
 }
 
 function result() {
+    const checkTresure = () => $("#pop > div > div.prt-popup-footer > div.btn-usual-close").length === 1
+    const popClose = () => $("#pop > div > div.prt-popup-footer > div.btn-usual-close").trigger("tap")
     const popOK = () => $("#pop > div > div.prt-popup-footer > div").trigger("tap");
     const checkPopBtn = () => $("#pop > div > div.prt-popup-footer > div").length > 0;
     const func = () => {
+        if (checkTresure()){
+            popClose();
+            setTimeout(func, 3000);
+        }
+
         if (checkPopBtn()) {
             popOK();
             setTimeout(func, 3000);
