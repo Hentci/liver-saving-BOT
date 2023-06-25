@@ -58,7 +58,7 @@ function quest() {
 function raid() {
 
     const checkBGBtn = () => $("#wrapper > div.contents > div.cnt-raid > div.prt-start-direction > div.prt-black-bg").length === 1;
-
+    const checkAttBtn = () => $("#cnt-raid-information > div.btn-attack-start.display-on").length === 1;
     const maxLoop = 50;
     let loopCount = 0;
 
@@ -71,6 +71,15 @@ function raid() {
             // setTimeout(() => {
             //     $("#wrapper > div.contents > div.cnt-raid > div.btn-auto").trigger("tap");
             // }, 1800);
+        } else if (loopCount < maxLoop) {
+            setTimeout(func, 100);
+        }
+        if (checkAttBtn()) {
+            $("#cnt-raid-information > div.btn-attack-start.display-on").trigger("tap");
+
+            setTimeout(() => {
+                $("#wrapper > div.contents > div.cnt-raid > div.btn-auto").trigger("tap");
+            }, 1800);
         } else if (loopCount < maxLoop) {
             setTimeout(func, 100);
         }
