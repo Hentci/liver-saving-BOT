@@ -74,16 +74,6 @@ function raid() {
         } else if (loopCount < maxLoop) {
             setTimeout(func, 100);
         }
-
-        if (checkAttBtn()) {
-            $("#cnt-raid-information > div.btn-attack-start.display-on").trigger("tap");
-
-            setTimeout(() => {
-                $("#wrapper > div.contents > div.cnt-raid > div.btn-auto").trigger("tap");
-            }, 1800);
-        } else if (loopCount < maxLoop) {
-            setTimeout(func, 100);
-        }
     }
 
     func();
