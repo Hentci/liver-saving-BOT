@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         earth unitefight
+// @name         super_baha
 // @namespace    http://tampermonkey.net/
 // @version      0.1
 // @description  try to take over the world!
@@ -14,9 +14,8 @@ var i = document.createElement('iframe');
 i.style.display = 'none';
 document.body.appendChild(i);
 window.console = i.contentWindow.console;
-
-const checkQueBtn = () => $("#cnt-quest > div.prt-supporter-list.prt-module > div:nth-child(6) > div:nth-child(1) > div.prt-button-cover").length === 1;
 function quest() {
+    const checkQueBtn = () => $("#cnt-quest > div.prt-supporter-list.prt-module > div:nth-child(6) > div:nth-child(1) > div.prt-button-cover").length === 1;
     const maxLoop = 50;
     let loopCount = 0;
     const func = () => {
@@ -26,7 +25,7 @@ function quest() {
         if(checkQueBtn()) {
             // $("#cnt-quest > div.prt-supporter-list.prt-module > div:nth-child(5) > div:nth-child(1) > div.prt-button-cover").trigger("tap");
             var noSpecifySummon = true;
-            for(var i = 1;i <= 10;i++){
+            for(var i = 1;i <= 15;i++){
                 var summonNameElement = document.querySelector("#cnt-quest > div.prt-supporter-list.prt-module > div.prt-supporter-attribute.type3.selected > div:nth-child("+i.toString()+") > div.prt-supporter-info > div.prt-supporter-detail > div.prt-supporter-summon.js-prt-supporter-summon > span.js-summon-name");
                 // 確認元素存在並印出 summon-name 的內容
                 if (summonNameElement) {
@@ -37,11 +36,13 @@ function quest() {
                         noSpecifySummon = false;
                         break;
                     }
-                } 
+                } else {
+                    console.log('error');
+                }
             }
 
             if(noSpecifySummon){
-                $("#cnt-quest > div.prt-supporter-list.prt-module > div:nth-child(6) > div:nth-child(2) > div.prt-button-cover").trigger("tap");
+                $("#cnt-quest > div.prt-supporter-list.prt-module > div:nth-child(6) > div:nth-child(1) > div.prt-button-cover").trigger("tap");
             }
 
             setTimeout(() => {
@@ -87,7 +88,6 @@ function result() {
     const popClose = () => $("#pop > div > div.prt-popup-footer > div.btn-usual-close").trigger("tap")
     const popOK = () => $("#pop > div > div.prt-popup-footer > div").trigger("tap");
     const checkPopBtn = () => $("#pop > div > div.prt-popup-footer > div").length > 0;
-    
     const func = () => {
         if (checkTresure()){
             popClose();
@@ -100,8 +100,7 @@ function result() {
         } else {
             setTimeout(() => {
                 $("#cnt-result > div.prt-result-cnt > div.prt-button-area.upper > div.btn-retry.cnt-quest").trigger("tap");
-            }, 3000);
-            
+            }, 5000);
         }
     }
 
