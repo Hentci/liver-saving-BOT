@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         super_baha
+// @name         gold_rush
 // @namespace    http://tampermonkey.net/
 // @version      0.1
 // @description  try to take over the world!
@@ -22,14 +22,15 @@ function select_quest() {
     var questCnt = $("#prt-multi-list").children().length
 
     const findQuest = (questCnt) => {
-        var finded = false;
-        for(var i = 1;i < questCnt;i++){
-            ele = document.querySelector("#prt-multi-list > div:nth-child(" + i.toString() + ")");
+        for(var idx = 1;idx < questCnt;idx++){
+            const ele = document.querySelector("#prt-multi-list > div:nth-child(" + idx.toString() + ")");
             const questName = ele.getAttribute('data-chapter-name');
             console.log(questName);
-            if(questName === "邂逅、黒銀の翼ＨＬ" || questName === "崩天、虚空の兆"){
-                finded = true;
-                return i;
+            if(questName === "神撃、究極の竜ＨＬ"){
+                return idx;
+            }
+            else if(questName === "邂逅、黒銀の翼ＨＬ" || questName === "崩天、虚空の兆"){
+                return idx;
             }
         }
         // #prt-multi-list > div:nth-child(2)
@@ -63,41 +64,39 @@ function select_quest() {
         }
         else setTimeout(func, 5000);
     }
+
+    func();
 }
 
 function quest() {
-    const checkQueBtn = () => $("#cnt-quest > div.prt-supporter-list.prt-module > div:nth-child(6) > div:nth-child(1) > div.prt-button-cover").length === 1;
+    const checkQueBtn = () => $("#cnt-quest > div.prt-supporter-list.prt-module > div:nth-child(7) > div:nth-child(1) > div.prt-button-cover").length === 1;
     const maxLoop = 50;
     let loopCount = 0;
     const func = () => {
         loopCount++;
-        
         // #cnt-quest > div.prt-supporter-list.prt-module > div.prt-supporter-attribute.type2.selected > div:nth-child(3) > div.prt-supporter-info > div.prt-supporter-detail > div.prt-supporter-summon.js-prt-supporter-summon > span.js-summon-name
         if(checkQueBtn()) {
             // $("#cnt-quest > div.prt-supporter-list.prt-module > div:nth-child(5) > div:nth-child(1) > div.prt-button-cover").trigger("tap");
             var noSpecifySummon = true;
-            for(var i = 1;i <= 15;i++){
-                var summonNameElement = document.querySelector("#cnt-quest > div.prt-supporter-list.prt-module > div.prt-supporter-attribute.type3.selected > div:nth-child("+i.toString()+") > div.prt-supporter-info > div.prt-supporter-detail > div.prt-supporter-summon.js-prt-supporter-summon > span.js-summon-name");
+            for(var idx = 1;idx <= 10;idx++){
+                var summonNameElement = document.querySelector("#cnt-quest > div.prt-supporter-list.prt-module > div.prt-supporter-attribute.type4.selected > div:nth-child("+idx.toString()+") > div.prt-supporter-info > div.prt-supporter-detail > div.prt-supporter-summon.js-prt-supporter-summon > span.js-summon-name");
                 // 確認元素存在並印出 summon-name 的內容
                 if (summonNameElement) {
                     var summonName = summonNameElement.textContent;
-                    // console.log(summonName);
-                    if(summonName === "ユグドラシル・マグナ"){
-                        $("#cnt-quest > div.prt-supporter-list.prt-module > div:nth-child(6) > div:nth-child("+i.toString()+") > div.prt-button-cover").trigger("tap");
+                    if(summonName === "ゼピュロス"){
+                        $("#cnt-quest > div.prt-supporter-list.prt-module > div:nth-child(7) > div:nth-child("+idx.toString()+") > div.prt-button-cover").trigger("tap");
                         noSpecifySummon = false;
                         break;
                     }
-                } else {
-                    console.log('error');
                 }
             }
 
             if(noSpecifySummon){
-                $("#cnt-quest > div.prt-supporter-list.prt-module > div:nth-child(6) > div:nth-child(1) > div.prt-button-cover").trigger("tap");
+                $("#cnt-quest > div.prt-supporter-list.prt-module > div:nth-child(7) > div:nth-child(1) > div.prt-button-cover").trigger("tap");
             }
 
             setTimeout(() => {
-                $("#wrapper > div.contents > div.pop-deck.supporter > div.prt-btn-deck > div.btn-usual-ok.se-quest-start").trigger("tap");
+                $("#wrapper > div.contents > div.pop-deck.supporter_raid > div.prt-btn-deck > div.btn-usual-ok.se-quest-start").trigger("tap");
             }, 3000);
         } else if(loopCount < maxLoop){
             setTimeout(func, 100);
@@ -160,13 +159,8 @@ function result() {
 
 function run(last) {
     let l = null;
-    if (window.location.hash.search("#quest") !== -1){
-        if (last !== "searchQuest"){
-            select_quest();
-        }
-        l = "searchQuest";
-    }
-    else if (window.location.hash.search("#quest/supporter_raid") !== -1) {
+    console.log(last);
+    if (window.location.hash.search("supporter_raid") !== -1) {
         if (last !== "quest") {
             quest();
         }
@@ -176,11 +170,16 @@ function run(last) {
             raid();
         }
         l = "raid";
-    } else if (window.location.hash.search("#result") !== -1) {
+    } else if (window.location.hash.search("#result_multi") !== -1) {
         if (last !== "result") {
             result();
         }
         l = "result";
+    } else if (window.location.hash.search("#quest") !== -1){
+        if (last !== "searchQuest"){
+            select_quest();
+        }
+        l = "searchQuest";
     }
 
     setTimeout(() => run(l), 2000);
@@ -189,8 +188,8 @@ function run(last) {
 setTimeout(() => run(null), 2000);
 
 window.hentci = {
-    select_quest,
     quest, 
     raid,
-    result
+    result,
+    select_quest,
 }
