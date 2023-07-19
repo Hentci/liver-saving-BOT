@@ -20,7 +20,24 @@ function select_quest() {
     const checkMultiBattleBtn = () => $("#prt-assist-multi > div.prt-switch-list > div.btn-switch-list.multi").length === 1;
     const checkCanGetQuestCnt = () => $("#prt-multi-list").length === 1;
     var questCnt = $("#prt-multi-list").children().length
+
+    const findQuest = (questCnt) => {
+        var finded = false;
+        for(var i = 1;i < questCnt;i++){
+            ele = document.querySelector("#prt-multi-list > div:nth-child(" + i.toString() + ")");
+            const questName = ele.getAttribute('data-chapter-name');
+            console.log(questName);
+            if(questName === "邂逅、黒銀の翼ＨＬ" || questName === "崩天、虚空の兆"){
+                finded = true;
+                return i;
+            }
+        }
+        // #prt-multi-list > div:nth-child(2)
+        return -1;
+    }
+
     const func = () => {
+        questCnt = -1;
         if (checkRaidBtn){
             $("#cnt-quest > div.prt-quest-index > div.prt-quest-base > div.prt-other-quest > div.prt-lead-button > div.prt-multi-button > div > div").trigger("tap");
         }
@@ -31,8 +48,20 @@ function select_quest() {
 
         if (checkCanGetQuestCnt){
             questCnt = $("#prt-multi-list").children().length;
-            console.log("Quest Count is: " + questCnt);
+            // console.log("Quest Count is: " + questCnt);
         }
+
+        if (questCnt != -1){
+            const questNum = findQuest(questCnt);
+            if(questNum !== -1){
+                console.log(questNum);
+                setTimeout(() => {
+                    $("#prt-multi-list > div:nth-child(" + questNum.toString() + ")").trigger("tap");
+                }, 1000);
+            }
+            else setTimeout(func, 3000);
+        }
+        else setTimeout(func, 5000);
     }
 }
 
@@ -131,12 +160,18 @@ function result() {
 
 function run(last) {
     let l = null;
-    if (window.location.hash.search("#quest") !== -1) {
+    if (window.location.hash.search("#quest") !== -1){
+        if (last !== "searchQuest"){
+            select_quest();
+        }
+        l = "searchQuest";
+    }
+    else if (window.location.hash.search("#quest/supporter_raid") !== -1) {
         if (last !== "quest") {
             quest();
         }
         l = "quest";
-    } else if (window.location.hash.search("#raid") !== -1) {
+    } else if (window.location.hash.search("#raid_multi") !== -1) {
         if (last !== "raid") {
             raid();
         }
@@ -154,6 +189,7 @@ function run(last) {
 setTimeout(() => run(null), 2000);
 
 window.hentci = {
+    select_quest,
     quest, 
     raid,
     result
