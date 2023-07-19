@@ -35,11 +35,11 @@ function select_quest() {
                 element = 'light';
                 return [idx, element];
             }
-            else if(questName === "神撃、究極の竜ＨＬ" || questName === "崩天、虚空の兆" || questName === "リンドヴルムＨＬ"){
+            else if(questName === "神撃、究極の竜ＨＬ" || questName === "崩天、虚空の兆" || questName === "降臨、調停の翼ＨＬ"){
                 element = 'dark';
                 return [idx, element];
             }
-            else if(questName === "フロネシスＨＬ" || questName === "ガレヲンＨＬ"){
+            else if(questName === "フロネシスＨＬ" || questName === "ガレヲンＨＬ"|| questName === "リンドヴルムＨＬ"){
                 element = 'wind';
                 return [idx, element];
             }
@@ -71,7 +71,7 @@ function select_quest() {
                 console.log(questNum);
                 setTimeout(() => {
                     $("#prt-multi-list > div:nth-child(" + questNum.toString() + ")").trigger("tap");
-                }, 100);
+                }, 3000);
             }
             else if(loopCnt <= bufferLoop){
                 setTimeout(func, 3000);
@@ -131,7 +131,26 @@ function lightSummon(){
 }
 
 function darkSummon(){
-    
+    var noSpecifySummon = true;
+    for(var i = 1;i <= 10;i++){
+        var summonNameElement = document.querySelector("#cnt-quest > div.prt-supporter-list.prt-module > div.prt-supporter-attribute.type6.selected > div:nth-child("+i.toString()+") > div.prt-supporter-info > div.prt-supporter-detail > div.prt-supporter-summon.js-prt-supporter-summon > span.js-summon-name");
+        // 確認元素存在並印出 summon-name 的內容
+        if (summonNameElement) {
+            var summonName = summonNameElement.textContent;
+            // console.log(summonName);
+            if(summonName === "ハデス"){
+                $("#cnt-quest > div.prt-supporter-list.prt-module > div:nth-child(9) > div:nth-child("+i.toString()+") > div.prt-button-cover").trigger("tap");
+                noSpecifySummon = false;
+                break;
+            }
+        } else {
+            console.log('error');
+        }
+    }
+
+    if(noSpecifySummon){
+        $("#cnt-quest > div.prt-supporter-list.prt-module > div:nth-child(9) > div:nth-child(1) > div.prt-button-cover").trigger("tap");
+    }
 }
 
 function quest() {
@@ -147,7 +166,11 @@ function quest() {
             if(element == "wind")
                 windSummon();
             else if(element == "dark")
-
+                darkSummon();
+            else if(element == "light")
+                lightSummon();
+            else if(element == "None")
+                console.log("error");
 
             setTimeout(() => {
                 $("#wrapper > div.contents > div.pop-deck.supporter_raid > div.prt-btn-deck > div.btn-usual-ok.se-quest-start").trigger("tap");
