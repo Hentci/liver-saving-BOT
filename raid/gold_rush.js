@@ -24,7 +24,7 @@ function select_quest() {
     var questCnt = $("#prt-multi-list").children().length
 
     const findQuest = (questCnt) => {
-        for(var idx = questCnt - 1;idx > 0;idx--){
+        for(var idx = 1;idx < questCnt;idx++){
             const ele = document.querySelector("#prt-multi-list > div:nth-child(" + idx.toString() + ")");
             const questName = ele.getAttribute('data-chapter-name');
             console.log(questName);
