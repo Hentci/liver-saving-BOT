@@ -14,6 +14,28 @@ var i = document.createElement('iframe');
 i.style.display = 'none';
 document.body.appendChild(i);
 window.console = i.contentWindow.console;
+
+function select_quest() {
+    const checkRaidBtn = () => $("#cnt-quest > div.prt-quest-index > div.prt-quest-base > div.prt-other-quest > div.prt-lead-button > div.prt-multi-button > div > div").length === 1;
+    const checkMultiBattleBtn = () => $("#prt-assist-multi > div.prt-switch-list > div.btn-switch-list.multi").length === 1;
+    const checkCanGetQuestCnt = () => $("#prt-multi-list").length === 1;
+    var questCnt = $("#prt-multi-list").children().length
+    const func = () => {
+        if (checkRaidBtn){
+            $("#cnt-quest > div.prt-quest-index > div.prt-quest-base > div.prt-other-quest > div.prt-lead-button > div.prt-multi-button > div > div").trigger("tap");
+        }
+
+        if (checkMultiBattleBtn){
+            $("#prt-assist-multi > div.prt-switch-list > div.btn-switch-list.multi").trigger("tap");
+        }
+
+        if (checkCanGetQuestCnt){
+            questCnt = $("#prt-multi-list").children().length;
+            console.log("Quest Count is: " + questCnt);
+        }
+    }
+}
+
 function quest() {
     const checkQueBtn = () => $("#cnt-quest > div.prt-supporter-list.prt-module > div:nth-child(6) > div:nth-child(1) > div.prt-button-cover").length === 1;
     const maxLoop = 50;
