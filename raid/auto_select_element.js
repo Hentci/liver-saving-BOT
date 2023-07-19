@@ -18,6 +18,7 @@ window.console = i.contentWindow.console;
 var element = "None";
 function select_quest() {
     const checkRaidBtn = () => $("#cnt-quest > div.prt-quest-index > div.prt-quest-base > div.prt-other-quest > div.prt-lead-button > div.prt-multi-button > div > div").length === 1;
+    const checkRaidBtn2 = () => $("#cnt-quest > div.prt-quest-index > div.prt-quest-base > div.prt-other-quest > div.prt-lead-button > div.prt-multi-button > div").length === 1;
     const checkMultiBattleBtn = () => $("#prt-assist-multi > div.prt-switch-list > div.btn-switch-list.multi").length === 1;
     const checkCanGetQuestCnt = () => $("#prt-multi-list").length === 1;
     const bufferLoop = 10;
@@ -56,6 +57,10 @@ function select_quest() {
         questCnt = -1;
         if (checkRaidBtn){
             $("#cnt-quest > div.prt-quest-index > div.prt-quest-base > div.prt-other-quest > div.prt-lead-button > div.prt-multi-button > div > div").trigger("tap");
+        }
+
+        if (checkRaidBtn2){
+            $("#cnt-quest > div.prt-quest-index > div.prt-quest-base > div.prt-other-quest > div.prt-lead-button > div.prt-multi-button > div").trigger("tap");
         }
 
         if (checkMultiBattleBtn){
