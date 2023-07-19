@@ -33,7 +33,7 @@ function select_quest() {
             const gauge_3 = gauge_2.slice(0, 2);
             // console.log(questName);
             // console.log(gauge_3);
-            if(questName === "邂逅、黒銀の翼ＨＬ" && parseInt(gauge_3) > 20){
+            if((questName === "邂逅、黒銀の翼ＨＬ" || questName === "フェディエルＨＬ") && parseInt(gauge_3) > 20){
                 element = 'light';
                 return [idx, element];
             }
