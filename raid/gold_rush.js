@@ -19,10 +19,12 @@ function select_quest() {
     const checkRaidBtn = () => $("#cnt-quest > div.prt-quest-index > div.prt-quest-base > div.prt-other-quest > div.prt-lead-button > div.prt-multi-button > div > div").length === 1;
     const checkMultiBattleBtn = () => $("#prt-assist-multi > div.prt-switch-list > div.btn-switch-list.multi").length === 1;
     const checkCanGetQuestCnt = () => $("#prt-multi-list").length === 1;
+    const bufferLoop = 10;
+    let loopCnt = 0;
     var questCnt = $("#prt-multi-list").children().length
 
     const findQuest = (questCnt) => {
-        for(var idx = 1;idx < questCnt;idx++){
+        for(var idx = questCnt - 1;idx > 0;idx--){
             const ele = document.querySelector("#prt-multi-list > div:nth-child(" + idx.toString() + ")");
             const questName = ele.getAttribute('data-chapter-name');
             console.log(questName);
@@ -32,12 +34,20 @@ function select_quest() {
             else if(questName === "邂逅、黒銀の翼ＨＬ" || questName === "崩天、虚空の兆"){
                 return idx;
             }
+            else if(questName === "フロネシスＨＬ" || questName === "ガレヲンＨＬ"){
+                return idx;
+            }
+            else if(questName === "リンドヴルムＨＬ"){
+                return idx;
+            }
+
         }
         // #prt-multi-list > div:nth-child(2)
         return -1;
     }
 
     const func = () => {
+        loopCnt++;
         questCnt = -1;
         if (checkRaidBtn){
             $("#cnt-quest > div.prt-quest-index > div.prt-quest-base > div.prt-other-quest > div.prt-lead-button > div.prt-multi-button > div > div").trigger("tap");
@@ -58,9 +68,15 @@ function select_quest() {
                 console.log(questNum);
                 setTimeout(() => {
                     $("#prt-multi-list > div:nth-child(" + questNum.toString() + ")").trigger("tap");
-                }, 1000);
+                }, 100);
             }
-            else setTimeout(func, 3000);
+            else if(loopCnt <= bufferLoop){
+                setTimeout(func, 3000);
+            }
+            else{
+                loopCnt = 0;
+                setTimeout(func, 30000);
+            }
         }
         else setTimeout(func, 5000);
     }
