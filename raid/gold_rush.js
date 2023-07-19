@@ -22,12 +22,14 @@ function select_quest() {
     const bufferLoop = 10;
     let loopCnt = 0;
     var questCnt = $("#prt-multi-list").children().length
-
     const findQuest = (questCnt) => {
         for(var idx = 1;idx < questCnt;idx++){
             const ele = document.querySelector("#prt-multi-list > div:nth-child(" + idx.toString() + ")");
             const questName = ele.getAttribute('data-chapter-name');
-            console.log(questName);
+            const questInfo = document.querySelector("#prt-multi-list > div:nth-child(" + idx.toString() + ") > div.prt-raid-info > div.prt-raid-status > div.prt-raid-gauge > div");
+            const gauge = questInfo.getAttribute('style');
+            // console.log(questName);
+            // console.log(gauge);
             if(questName === "神撃、究極の竜ＨＬ"){
                 return idx;
             }
