@@ -107,6 +107,33 @@ function windSummon() {
     }
 }
 
+function lightSummon(){
+    var noSpecifySummon = true;
+    for(var i = 1;i <= 10;i++){
+        var summonNameElement = document.querySelector("#cnt-quest > div.prt-supporter-list.prt-module > div.prt-supporter-attribute.type5.selected > div:nth-child("+i.toString()+") > div.prt-supporter-info > div.prt-supporter-detail > div.prt-supporter-summon.js-prt-supporter-summon > span.js-summon-name");
+        // 確認元素存在並印出 summon-name 的內容
+        if (summonNameElement) {
+            var summonName = summonNameElement.textContent;
+            // console.log(summonName);
+            if(summonName === "ゼウス"){
+                $("#cnt-quest > div.prt-supporter-list.prt-module > div:nth-child(8) > div:nth-child("+i.toString()+") > div.prt-button-cover").trigger("tap");
+                noSpecifySummon = false;
+                break;
+            }
+        } else {
+            console.log('error');
+        }
+    }
+
+    if(noSpecifySummon){
+        $("#cnt-quest > div.prt-supporter-list.prt-module > div:nth-child(8) > div:nth-child(1) > div.prt-button-cover").trigger("tap");
+    }
+}
+
+function darkSummon(){
+    
+}
+
 function quest() {
     const checkQueBtn = () => $("#cnt-quest > div.prt-supporter-list.prt-module > div:nth-child(7) > div:nth-child(1) > div.prt-button-cover").length === 1;
     const maxLoop = 50;
@@ -120,7 +147,7 @@ function quest() {
             if(element == "wind")
                 windSummon();
             else if(element == "dark")
-                
+
 
             setTimeout(() => {
                 $("#wrapper > div.contents > div.pop-deck.supporter_raid > div.prt-btn-deck > div.btn-usual-ok.se-quest-start").trigger("tap");
