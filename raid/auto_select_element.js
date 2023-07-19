@@ -29,17 +29,19 @@ function select_quest() {
             const questName = ele.getAttribute('data-chapter-name');
             const questInfo = document.querySelector("#prt-multi-list > div:nth-child(" + idx.toString() + ") > div.prt-raid-info > div.prt-raid-status > div.prt-raid-gauge > div");
             const gauge = questInfo.getAttribute('style');
-            console.log(questName);
-            console.log(gauge);
-            if(questName === "邂逅、黒銀の翼ＨＬ"){
+            const gauge_2 = gauge.slice(-4);
+            const gauge_3 = gauge_2.slice(0, 2);
+            // console.log(questName);
+            // console.log(gauge_3);
+            if(questName === "邂逅、黒銀の翼ＨＬ" && parseInt(gauge_3) > 20){
                 element = 'light';
                 return [idx, element];
             }
-            else if(questName === "神撃、究極の竜ＨＬ" || questName === "崩天、虚空の兆" || questName === "降臨、調停の翼ＨＬ"){
+            else if((questName === "神撃、究極の竜ＨＬ" || questName === "崩天、虚空の兆" || questName === "降臨、調停の翼ＨＬ") && parseInt(gauge_3) > 20){
                 element = 'dark';
                 return [idx, element];
             }
-            else if(questName === "フロネシスＨＬ" || questName === "ガレヲンＨＬ"|| questName === "リンドヴルムＨＬ"){
+            else if((questName === "フロネシスＨＬ" || questName === "ガレヲンＨＬ"|| questName === "リンドヴルムＨＬ") && parseInt(gauge_3) > 20){
                 element = 'wind';
                 return [idx, element];
             }
@@ -236,7 +238,7 @@ function result() {
 
 function run(last) {
     let l = null;
-    console.log(last);
+    // console.log(last);
     if (window.location.hash.search("supporter_raid") !== -1) {
         if (last !== "quest") {
             quest();
