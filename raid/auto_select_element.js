@@ -34,15 +34,15 @@ function select_quest() {
             const gauge_3 = gauge_2.slice(0, 2);
             // console.log(questName);
             // console.log(gauge_3);
-            if((questName === "邂逅、黒銀の翼ＨＬ" || questName === "フェディエルＨＬ") && parseInt(gauge_3) > 20){
+            if((questName === "邂逅、黒銀の翼ＨＬ" || questName === "フェディエルＨＬ") && parseInt(gauge_3) > 35){
                 element = 'light';
                 return [idx, element];
             }
-            else if((questName === "神撃、究極の竜ＨＬ" || questName === "崩天、虚空の兆" || questName === "降臨、調停の翼ＨＬ") && parseInt(gauge_3) > 20){
+            else if((questName === "神撃、究極の竜ＨＬ" || questName === "崩天、虚空の兆" || questName === "降臨、調停の翼ＨＬ") && parseInt(gauge_3) > 25){
                 element = 'dark';
                 return [idx, element];
             }
-            else if((questName === "フロネシスＨＬ" || questName === "ガレヲンＨＬ"|| questName === "リンドヴルムＨＬ") && parseInt(gauge_3) > 20){
+            else if((questName === "フロネシスＨＬ" || questName === "ガレヲンＨＬ"|| questName === "リンドヴルムＨＬ") && parseInt(gauge_3) > 25){
                 element = 'wind';
                 return [idx, element];
             }
@@ -78,7 +78,7 @@ function select_quest() {
                 console.log(questNum);
                 setTimeout(() => {
                     $("#prt-multi-list > div:nth-child(" + questNum.toString() + ")").trigger("tap");
-                }, 3000);
+                }, 1500);
             }
             else if(loopCnt <= bufferLoop){
                 setTimeout(func, 3000);
