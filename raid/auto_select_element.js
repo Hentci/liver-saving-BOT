@@ -50,10 +50,6 @@ function select_quest() {
                 element = 'fire';
                 return [idx, element];
             }
-            else if((questName === "降臨、調停の翼ＨＬ") && parseInt(gauge_3) < 15){ // easy to die
-                element = 'dark';
-                return [idx, element];
-            }
 
         }
         // #prt-multi-list > div:nth-child(2)
@@ -89,7 +85,7 @@ function select_quest() {
                 }, 1500);
             }
             else if(loopCnt <= bufferLoop){
-                setTimeout(func, 6000);
+                setTimeout(func, 5000);
             }
             else{
                 loopCnt = 0;
@@ -99,7 +95,7 @@ function select_quest() {
         else setTimeout(func, 5000);
     }
 
-    func();
+    setTimeout(func, 5000);
 }
 
 function windSummon() {
