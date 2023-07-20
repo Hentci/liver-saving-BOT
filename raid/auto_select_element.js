@@ -85,7 +85,7 @@ function select_quest() {
                 }, 1500);
             }
             else if(loopCnt <= bufferLoop){
-                setTimeout(func, 3000);
+                setTimeout(func, 6000);
             }
             else{
                 loopCnt = 0;
