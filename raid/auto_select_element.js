@@ -80,9 +80,9 @@ function select_quest() {
             const [questNum, element] = findQuest(questCnt);
             if(questNum !== -1){
                 console.log(questNum);
-                setTimeout(() => {
-                    $("#prt-multi-list > div:nth-child(" + questNum.toString() + ")").trigger("tap");
-                }, 1500);
+                // setTimeout(() => {
+                $("#prt-multi-list > div:nth-child(" + questNum.toString() + ")").trigger("tap");
+                // }, 1500);
             }
             else if(loopCnt <= bufferLoop){
                 setTimeout(func, 5000);
