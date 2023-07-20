@@ -38,12 +38,16 @@ function select_quest() {
                 element = 'light';
                 return [idx, element];
             }
-            else if((questName === "神撃、究極の竜ＨＬ" || questName === "崩天、虚空の兆" || questName === "降臨、調停の翼ＨＬ") && parseInt(gauge_3) > 25){
+            else if((questName === "神撃、究極の竜ＨＬ" || questName === "崩天、虚空の兆" || questName === "降臨、調停の翼ＨＬ" || questName === "ル・オーＨＬ") && parseInt(gauge_3) > 25){
                 element = 'dark';
                 return [idx, element];
             }
             else if((questName === "フロネシスＨＬ" || questName === "ガレヲンＨＬ"|| questName === "リンドヴルムＨＬ") && parseInt(gauge_3) > 25){
                 element = 'wind';
+                return [idx, element];
+            }
+            else if((questName === "イーウィヤＨＬ" || questName === "ティアマト・マリスＨＬ") && parseInt(gauge_3) > 25){
+                element = 'fire';
                 return [idx, element];
             }
 
@@ -160,6 +164,29 @@ function darkSummon(){
     }
 }
 
+function fireSummon(){
+    var noSpecifySummon = true;
+    for(var i = 1;i <= 10;i++){
+        var summonNameElement = document.querySelector("#cnt-quest > div.prt-supporter-list.prt-module > div.prt-supporter-attribute.type1.selected > div:nth-child("+i.toString()+") > div.prt-supporter-info > div.prt-supporter-detail > div.prt-supporter-summon.js-prt-supporter-summon > span.js-summon-name");
+        // 確認元素存在並印出 summon-name 的內容
+        if (summonNameElement) {
+            var summonName = summonNameElement.textContent;
+            // console.log(summonName);
+            if(summonName === "コロッサス・マグナ"){
+                $("#cnt-quest > div.prt-supporter-list.prt-module > div:nth-child(4) > div:nth-child("+i.toString()+") > div.prt-button-cover").trigger("tap");
+                noSpecifySummon = false;
+                break;
+            }
+        } else {
+            console.log('error');
+        }
+    }
+
+    if(noSpecifySummon){
+        $("#cnt-quest > div.prt-supporter-list.prt-module > div:nth-child(4) > div:nth-child(1) > div.prt-button-cover").trigger("tap");
+    }
+}
+
 function quest() {
     const checkQueBtn = () => $("#cnt-quest > div.prt-supporter-list.prt-module > div:nth-child(7) > div:nth-child(1) > div.prt-button-cover").length === 1;
     const maxLoop = 50;
@@ -176,6 +203,8 @@ function quest() {
                 darkSummon();
             else if(element == "light")
                 lightSummon();
+            else if(element == "fire")
+                fireSummon();
             else if(element == "None")
                 console.log("error");
 
