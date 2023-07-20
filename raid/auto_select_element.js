@@ -38,7 +38,7 @@ function select_quest() {
                 element = 'light';
                 return [idx, element];
             }
-            else if((questName === "神撃、究極の竜ＨＬ" || questName === "崩天、虚空の兆" || questName === "降臨、調停の翼ＨＬ" || questName === "ル・オーＨＬ") && parseInt(gauge_3) > 25){
+            else if((questName === "神撃、究極の竜ＨＬ" || questName === "崩天、虚空の兆" || questName === "ル・オーＨＬ") && parseInt(gauge_3) > 25){
                 element = 'dark';
                 return [idx, element];
             }
@@ -48,6 +48,10 @@ function select_quest() {
             }
             else if((questName === "イーウィヤＨＬ" || questName === "ティアマト・マリスＨＬ") && parseInt(gauge_3) > 25){
                 element = 'fire';
+                return [idx, element];
+            }
+            else if((questName === "降臨、調停の翼ＨＬ") && parseInt(gauge_3) < 15){ // easy to die
+                element = 'dark';
                 return [idx, element];
             }
 
