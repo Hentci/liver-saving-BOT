@@ -77,14 +77,18 @@ function select_quest() {
         }
         // console.log(questCnt);
         if (questCnt > 2){
-            const [questNum, element] = findQuest(questCnt);
-            if(questNum !== -1){
-                console.log(questNum);
-                // setTimeout(() => {
-                $("#prt-multi-list > div:nth-child(" + questNum.toString() + ")").trigger("tap");
-                // }, 1500);
-            }
-            else if(loopCnt <= bufferLoop){
+            setTimeout(() => {
+                const [questNum, element] = findQuest(questCnt);
+                // Rest of your code that uses questNum and element goes here
+                if(questNum !== -1){
+                    console.log(questNum);
+                    setTimeout(() => {
+                        $("#prt-multi-list > div:nth-child(" + questNum.toString() + ")").trigger("tap");
+                    }, 1000);
+                }
+            }, 7500);
+              
+            if(loopCnt <= bufferLoop){
                 setTimeout(func, 5000);
             }
             else{
@@ -95,7 +99,7 @@ function select_quest() {
         else setTimeout(func, 5000);
     }
 
-    setTimeout(func, 5000);
+    setTimeout(func, 8000);
 }
 
 function windSummon() {
