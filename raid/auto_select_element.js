@@ -231,7 +231,7 @@ function raid() {
 
     const func = () => {
         loopCount++;
-
+        // #pop > div > div.prt-popup-footer > div
         if (checkBGBtn()) {
             $("#wrapper > div.contents > div.cnt-raid > div.prt-start-direction > div.prt-black-bg").trigger("tap");
 
