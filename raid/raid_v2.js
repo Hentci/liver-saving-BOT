@@ -50,10 +50,10 @@ function select_quest() {
                 element = 'fire';
                 return [idx, element];
             }
-            else if((questName === "アバターＨＬ") && parseInt(gauge_3) > 35 && parseInt(gauge_3) <= 50){
-                element = 'light';
-                return [idx, element];
-            }
+            // else if((questName === "アバターＨＬ") && parseInt(gauge_3) > 35 && parseInt(gauge_3) <= 50){
+            //     element = 'light';
+            //     return [idx, element];
+            // }
 
         }
         // #prt-multi-list > div:nth-child(2)
@@ -90,20 +90,20 @@ function select_quest() {
                         $("#prt-multi-list > div:nth-child(" + questNum.toString() + ")").trigger("tap");
                     }, 1000);
                 }
-            }, 7500);
+            }, 5000);
               
             if(loopCnt <= bufferLoop){
-                setTimeout(func, 5000);
+                setTimeout(func, 3000);
             }
             else{
                 loopCnt = 0;
                 setTimeout(func, 30000);
             }
         }
-        else setTimeout(func, 5000);
+        else setTimeout(func, 3000);
     }
 
-    setTimeout(func, 8000);
+    setTimeout(func, 3000);
 }
 
 function windSummon() {
