@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         raid_v2
+// @name         raid_search_dixed
 // @namespace    http://tampermonkey.net/
 // @version      0.1
 // @description  try to take over the world!
@@ -19,35 +19,23 @@ var element = "None";
 function select_quest() {
     const checkRaidBtn = () => $("#cnt-quest > div.prt-quest-index > div.prt-quest-base > div.prt-other-quest > div.prt-lead-button > div.prt-multi-button > div > div").length === 1;
     const checkRaidBtn2 = () => $("#cnt-quest > div.prt-quest-index > div.prt-quest-base > div.prt-other-quest > div.prt-lead-button > div.prt-multi-button > div").length === 1;
-    const checkMultiBattleBtn = () => $("#prt-assist-multi > div.prt-switch-list > div.btn-switch-list.multi").length === 1;
-    const checkCanGetQuestCnt = () => $("#prt-multi-list").length === 1;
+    const checkMultiBattleBtn = () => $("#prt-assist-search > div.prt-module > div.btn-search-refresh").length === 1;
+    const checkCanGetQuestCnt = () => $("#prt-search-list").length === 1;
     const bufferLoop = 10;
     let loopCnt = 0;
-    var questCnt = $("#prt-multi-list").children().length
+    var questCnt = $("#prt-search-list").children().length
     const findQuest = (questCnt) => {
         for(var idx = questCnt - 1;idx >= 1;idx--){
-            const ele = document.querySelector("#prt-multi-list > div:nth-child(" + idx.toString() + ")");
+            const ele = document.querySelector("#prt-search-list > div:nth-child(" + idx.toString() + ")");
             const questName = ele.getAttribute('data-chapter-name');
-            const questInfo = document.querySelector("#prt-multi-list > div:nth-child(" + idx.toString() + ") > div.prt-raid-info > div.prt-raid-status > div.prt-raid-gauge > div");
+            const questInfo = document.querySelector("#prt-search-list > div:nth-child(" + idx.toString() + ") > div.prt-raid-info > div.prt-raid-status > div.prt-raid-gauge > div");
             const gauge = questInfo.getAttribute('style');
             const gauge_2 = gauge.slice(-4);
             const gauge_3 = gauge_2.slice(0, 2);
             // console.log(questName);
             // console.log(gauge_3);
-            if((questName === "邂逅、黒銀の翼ＨＬ" || questName === "フェディエルＨＬ") && parseInt(gauge_3) > 35){
+            if(parseInt(gauge_3) >= 50){
                 element = 'light';
-                return [idx, element];
-            }
-            else if((questName === "神撃、究極の竜ＨＬ" || questName === "崩天、虚空の兆" || questName === "ル・オーＨＬ") && parseInt(gauge_3) > 25){
-                element = 'dark';
-                return [idx, element];
-            }
-            else if((questName === "フロネシスＨＬ" || questName === "ガレヲンＨＬ"|| questName === "リンドヴルムＨＬ") && parseInt(gauge_3) > 25){
-                element = 'wind';
-                return [idx, element];
-            }
-            else if((questName === "イーウィヤＨＬ" || questName === "ティアマト・マリスＨＬ") && parseInt(gauge_3) > 25){
-                element = 'fire';
                 return [idx, element];
             }
             // else if((questName === "アバターＨＬ") && parseInt(gauge_3) > 35 && parseInt(gauge_3) <= 50){
@@ -56,7 +44,7 @@ function select_quest() {
             // }
 
         }
-        // #prt-multi-list > div:nth-child(2)
+        // #prt-search-list > div:nth-child(2)
         return [-1, element];
     }
 
@@ -72,11 +60,11 @@ function select_quest() {
         }
 
         if (checkMultiBattleBtn){
-            $("#prt-assist-multi > div.prt-switch-list > div.btn-switch-list.multi").trigger("tap");
+            $("#prt-assist-search > div.prt-module > div.btn-search-refresh").trigger("tap");
         }
 
         if (checkCanGetQuestCnt){
-            questCnt = $("#prt-multi-list").children().length;
+            questCnt = $("#prt-search-list").children().length;
             // console.log("Quest Count is: " + questCnt);
         }
         // console.log(questCnt);
@@ -87,23 +75,23 @@ function select_quest() {
                 if(questNum !== -1){
                     console.log(questNum);
                     setTimeout(() => {
-                        $("#prt-multi-list > div:nth-child(" + questNum.toString() + ")").trigger("tap");
+                        $("#prt-search-list > div:nth-child(" + questNum.toString() + ")").trigger("tap");
                     }, 1000);
                 }
-            }, 5000);
+            }, 3000);
               
             if(loopCnt <= bufferLoop){
-                setTimeout(func, 3000);
+                setTimeout(func, 7000);
             }
             else{
                 loopCnt = 0;
                 setTimeout(func, 30000);
             }
         }
-        else setTimeout(func, 3000);
+        else setTimeout(func, 7000);
     }
 
-    setTimeout(func, 3000);
+    setTimeout(func, 7000);
 }
 
 function windSummon() {
@@ -195,6 +183,29 @@ function fireSummon(){
     }
 }
 
+function earthSummon(){
+    var noSpecifySummon = true;
+    for(var i = 1;i <= 10;i++){
+        var summonNameElement = document.querySelector("#cnt-quest > div.prt-supporter-list.prt-module > div.prt-supporter-attribute.type3.selected > div:nth-child("+i.toString()+") > div.prt-supporter-info > div.prt-supporter-detail > div.prt-supporter-summon.js-prt-supporter-summon > span.js-summon-name");
+        // 確認元素存在並印出 summon-name 的內容
+        if (summonNameElement) {
+            var summonName = summonNameElement.textContent;
+            // console.log(summonName);
+            if(summonName === "ユグドラシル・マグナ"){
+                $("#cnt-quest > div.prt-supporter-list.prt-module > div:nth-child(6) > div:nth-child("+i.toString()+") > div.prt-button-cover").trigger("tap");
+                noSpecifySummon = false;
+                break;
+            }
+        } else {
+            console.log('error');
+        }
+    }
+
+    if(noSpecifySummon){
+        $("#cnt-quest > div.prt-supporter-list.prt-module > div:nth-child(6) > div:nth-child(2) > div.prt-button-cover").trigger("tap");
+    }
+}
+
 function quest() {
     const checkQueBtn = () => $("#cnt-quest > div.prt-supporter-list.prt-module > div:nth-child(7) > div:nth-child(1) > div.prt-button-cover").length === 1;
     const maxLoop = 50;
@@ -213,6 +224,8 @@ function quest() {
                 lightSummon();
             else if(element == "fire")
                 fireSummon();
+            else if(element == "earth")
+                earthSummon();
             else if(element == "None")
                 console.log("error");
 
