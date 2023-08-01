@@ -37,7 +37,7 @@ function select_quest() {
             // console.log("num_player: " + num_player);
             // console.log(gauge_3);
             if(parseInt(gauge_3) >= 50 && parseInt(num_player) <= 5){
-                element = 'light';
+                element = 'water';
                 return [idx, element];
             }
             // else if((questName === "アバターＨＬ") && parseInt(gauge_3) > 35 && parseInt(gauge_3) <= 50){
