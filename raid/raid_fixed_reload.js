@@ -83,17 +83,17 @@ function select_quest() {
             }, 3000);
               
             if(loopCnt <= bufferLoop){
-                setTimeout(func, 3000);
+                setTimeout(func, 5000);
             }
             else{
                 loopCnt = 0;
                 setTimeout(func, 30000);
             }
         }
-        else setTimeout(func, 3000);
+        else setTimeout(func, 5000);
     }
 
-    setTimeout(func, 3000);
+    setTimeout(func, 5000);
 }
 
 function windSummon() {
@@ -252,7 +252,10 @@ function raid() {
         loopCount++;
         // #pop > div > div.prt-popup-footer > div
         if (checkBGBtn()) {
-            $("#wrapper > div.contents > div.cnt-raid > div.prt-start-direction > div.prt-black-bg").trigger("tap");
+            // $("#wrapper > div.contents > div.cnt-raid > div.prt-start-direction > div.prt-black-bg").trigger("tap");
+            setTimeout(() => {
+                $("#wrapper > div.contents > div.cnt-raid > div.prt-start-direction > div.prt-black-bg").trigger("tap");
+            }, 300);
 
             // setTimeout(() => {
             //     $("#wrapper > div.contents > div.cnt-raid > div.btn-auto").trigger("tap");
@@ -277,13 +280,13 @@ function quick_raid() {
         if (!checkAttBtn()) {
             setTimeout(() => {
                 location.reload();
-            }, 1000);
+            }, 2000);
         } else if (loopCount < maxLoop) {
             setTimeout(func, 2000);
         }
     }
 
-    func();
+    setTimeout(func, 2000);
 }
 
 function delay(time) {
@@ -334,7 +337,7 @@ function run(last) {
         else{
             if (checkPopBtn()){
                 console.log('pop BTN');
-                setTimeout(popOK, 5000);
+                setTimeout(popOK, 2000);
             }
             quick_raid();
         }
@@ -362,10 +365,10 @@ function run(last) {
         l = "searchQuest";
     }
 
-    setTimeout(() => run(l), 2000);
+    setTimeout(() => run(l), 1500);
 }
 
-setTimeout(() => run(null), 2000);
+setTimeout(() => run(null), 1500);
 
 window.hentci = {
     quest, 
