@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         raid_search_dixed
+// @name         raid_search_fixed
 // @namespace    http://tampermonkey.net/
 // @version      0.1
 // @description  try to take over the world!
@@ -29,12 +29,14 @@ function select_quest() {
             const ele = document.querySelector("#prt-search-list > div:nth-child(" + idx.toString() + ")");
             const questName = ele.getAttribute('data-chapter-name');
             const questInfo = document.querySelector("#prt-search-list > div:nth-child(" + idx.toString() + ") > div.prt-raid-info > div.prt-raid-status > div.prt-raid-gauge > div");
+            const raidSubInfo = document.querySelector("#prt-search-list > div:nth-child(" + idx.toString() + ") > div.prt-raid-info > div.prt-raid-subinfo > div.prt-flees-in");
             const gauge = questInfo.getAttribute('style');
             const gauge_2 = gauge.slice(-4);
             const gauge_3 = gauge_2.slice(0, 2);
-            // console.log(questName);
+            var num_player = raidSubInfo.textContent.split('/')[0];
+            console.log("num_player: " + num_player);
             // console.log(gauge_3);
-            if(parseInt(gauge_3) >= 50){
+            if(parseInt(gauge_3) >= 50 && parseInt(num_player) <= 5){
                 element = 'light';
                 return [idx, element];
             }
@@ -81,17 +83,17 @@ function select_quest() {
             }, 3000);
               
             if(loopCnt <= bufferLoop){
-                setTimeout(func, 7000);
+                setTimeout(func, 5000);
             }
             else{
                 loopCnt = 0;
                 setTimeout(func, 30000);
             }
         }
-        else setTimeout(func, 7000);
+        else setTimeout(func, 5000);
     }
 
-    setTimeout(func, 7000);
+    setTimeout(func, 5000);
 }
 
 function windSummon() {
@@ -231,7 +233,7 @@ function quest() {
 
             setTimeout(() => {
                 $("#wrapper > div.contents > div.pop-deck.supporter_raid > div.prt-btn-deck > div.btn-usual-ok.se-quest-start").trigger("tap");
-            }, 3000);
+            }, 1000);
         } else if(loopCount < maxLoop){
             setTimeout(func, 100);
         }
