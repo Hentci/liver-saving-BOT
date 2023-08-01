@@ -330,10 +330,10 @@ function run(last) {
             raid();
         }
         else{
-            // if (checkPopBtn()){
-            //     console.log('pop BTN');
-            //     setTimeout(popOK, 5000);
-            // }
+            if (checkPopBtn()){
+                console.log('pop BTN');
+                setTimeout(popOK, 5000);
+            }
             quick_raid();
         }
         l = "raid";
