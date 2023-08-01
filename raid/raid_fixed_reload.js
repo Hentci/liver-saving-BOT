@@ -83,17 +83,17 @@ function select_quest() {
             }, 3000);
               
             if(loopCnt <= bufferLoop){
-                setTimeout(func, 5000);
+                setTimeout(func, 3000);
             }
             else{
                 loopCnt = 0;
                 setTimeout(func, 30000);
             }
         }
-        else setTimeout(func, 5000);
+        else setTimeout(func, 3000);
     }
 
-    setTimeout(func, 5000);
+    setTimeout(func, 3000);
 }
 
 function windSummon() {
@@ -316,6 +316,8 @@ function result() {
 
 const checkPopBtn = () => $("#pop > div > div.prt-popup-footer > div").length > 0;
 const popOK = () => $("#pop > div > div.prt-popup-footer > div").trigger("tap");
+const resultPopOut = () => $("#wrapper > div.contents > div.cnt-result > div.prt-button-area > a").length > 0;
+const resultPopOK = () => $("#wrapper > div.contents > div.cnt-result > div.prt-button-area > a").trigger("tap");
 
 function run(last) {
     let l = null;
@@ -344,7 +346,12 @@ function run(last) {
         else{
             if (checkPopBtn()){
                 console.log('pop BTN');
-                setTimeout(popOK, 5000);
+                setTimeout(popOK, 3000);
+            }
+
+            if (resultPopOut()){
+                console.log('result pop BTN');
+                setTimeout(resultPopOK, 3000);
             }
         }
         l = "result";
