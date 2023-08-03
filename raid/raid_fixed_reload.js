@@ -37,7 +37,7 @@ function select_quest() {
             // console.log("num_player: " + num_player);
             // console.log(gauge_3);
             if(parseInt(gauge_3) >= 50 && parseInt(num_player) <= 5){
-                element = 'water';
+                element = 'light';
                 return [idx, element];
             }
             // else if((questName === "アバターＨＬ") && parseInt(gauge_3) > 35 && parseInt(gauge_3) <= 50){
@@ -277,10 +277,10 @@ function raid() {
         loopCount++;
         // #pop > div > div.prt-popup-footer > div
         if (checkBGBtn()) {
-            // $("#wrapper > div.contents > div.cnt-raid > div.prt-start-direction > div.prt-black-bg").trigger("tap");
-            setTimeout(() => {
-                $("#wrapper > div.contents > div.cnt-raid > div.prt-start-direction > div.prt-black-bg").trigger("tap");
-            }, 300);
+            $("#wrapper > div.contents > div.cnt-raid > div.prt-start-direction > div.prt-black-bg").trigger("tap");
+            // setTimeout(() => {
+            //     $("#wrapper > div.contents > div.cnt-raid > div.prt-start-direction > div.prt-black-bg").trigger("tap");
+            // }, 300);
 
             // setTimeout(() => {
             //     $("#wrapper > div.contents > div.cnt-raid > div.btn-auto").trigger("tap");

@@ -80,7 +80,7 @@ async function doSkill(maxLoop, characterPath, abilityPath) {
         await waitUntilTrue(maxLoop, checkCharacter);
         console.log("click character");
         $(characterPath).trigger("tap");
-        await delay(3000);
+        await delay(1000);
         await waitUntilTrue(maxLoop, checkAbility);
         console.log("click ability");
         $(abilityPath).trigger("tap");
@@ -90,23 +90,43 @@ async function doSkill(maxLoop, characterPath, abilityPath) {
 }
 
 function quest() {
-    const checkQueBtn = () => $("#cnt-quest > div.prt-supporter-list.prt-module > div:nth-child(8) > div:nth-child(1) > div.prt-button-cover").length === 1;
+    const checkQueBtn = () => $("#cnt-quest > div.prt-supporter-list.prt-module > div:nth-child(7) > div:nth-child(1) > div.prt-button-cover").length === 1;
     const maxLoop = 50;
     let loopCount = 0;
     const func = () => {
         loopCount++;
-
+        // ハデス ゼウス
+        // #cnt-quest > div.prt-supporter-list.prt-module > div.prt-supporter-attribute.type2.selected > div:nth-child(3) > div.prt-supporter-info > div.prt-supporter-detail > div.prt-supporter-summon.js-prt-supporter-summon > span.js-summon-name
         if(checkQueBtn()) {
-            $("#cnt-quest > div.prt-supporter-list.prt-module > div:nth-child(8) > div:nth-child(1) > div.prt-button-cover").trigger("tap");
+            // $("#cnt-quest > div.prt-supporter-list.prt-module > div:nth-child(5) > div:nth-child(1) > div.prt-button-cover").trigger("tap");
+            var noSpecifySummon = true;
+            for(var i = 1;i <= 10;i++){
+                var summonNameElement = document.querySelector("#cnt-quest > div.prt-supporter-list.prt-module > div.prt-supporter-attribute.type5.selected > div:nth-child("+i.toString()+") > div.prt-supporter-info > div.prt-supporter-detail > div.prt-supporter-summon.js-prt-supporter-summon > span.js-summon-name");
+                // 確認元素存在並印出 summon-name 的內容
+                if (summonNameElement) {
+                    var summonName = summonNameElement.textContent;
+                    // console.log(summonName);
+                    if(summonName === "ゼウス"){
+                        $("#cnt-quest > div.prt-supporter-list.prt-module > div:nth-child(8) > div:nth-child("+i.toString()+") > div.prt-button-cover").trigger("tap");
+                        noSpecifySummon = false;
+                        break;
+                    }
+                } else {
+                    console.log('error');
+                }
+            }
+
+            if(noSpecifySummon){
+                $("#cnt-quest > div.prt-supporter-list.prt-module > div:nth-child(8) > div:nth-child(1) > div.prt-button-cover").trigger("tap");
+            }
 
             setTimeout(() => {
-                $("#cnt-quest > div.pop-deck.supporter > div.prt-btn-deck > div.btn-usual-ok.se-quest-start").trigger("tap");
+                $("#wrapper > div.contents > div.pop-deck.supporter > div.prt-btn-deck > div.btn-usual-ok.se-quest-start").trigger("tap");
             }, 3000);
         } else if(loopCount < maxLoop){
             setTimeout(func, 100);
         }
     }
-    
     func();
 }
 
@@ -169,6 +189,11 @@ function result() {
     func();
 }
 
+const checkPopBtn = () => $("#pop > div > div.prt-popup-footer > div").length > 0;
+const checkNxtBtn = () => $("#pop > div > div.prt-popup-footer > div.btn-usual-next").length === 1;
+const popOK = () => $("#pop > div > div.prt-popup-footer > div").trigger("tap");
+const popNxt = () => $("#pop > div > div.prt-popup-footer > div.btn-usual-next").trigger("tap");
+
 function run(last) {
     let l = null;
     if (window.location.hash.search("#quest") !== -1) {
@@ -185,6 +210,17 @@ function run(last) {
         if (last !== "result") {
             result();
         }
+        // else{
+        //     if (checkPopBtn()) {
+        //         popOK();
+        //         setTimeout(func, 3000);
+        //     }
+
+        //     if(checkNxtBtn()){
+        //         popNxt();
+        //         setTimeout(func, 2000);
+        //     }
+        // }
         l = "result";
     }
 
