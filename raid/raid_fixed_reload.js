@@ -36,7 +36,7 @@ function select_quest() {
             var num_player = raidSubInfo.textContent.split('/')[0];
             // console.log("num_player: " + num_player);
             // console.log(gauge_3);
-            if(parseInt(gauge_3) >= 50 && parseInt(num_player) <= 5){
+            if(parseInt(gauge_3) >= 50 && parseInt(num_player) <= 3){
                 element = 'light';
                 return [idx, element];
             }
@@ -70,7 +70,7 @@ function select_quest() {
             // console.log("Quest Count is: " + questCnt);
         }
         // console.log(questCnt);
-        if (questCnt > 2){
+        if (questCnt > 1){
             setTimeout(() => {
                 const [questNum, element] = findQuest(questCnt);
                 // Rest of your code that uses questNum and element goes here
@@ -80,17 +80,17 @@ function select_quest() {
                         $("#prt-search-list > div:nth-child(" + questNum.toString() + ")").trigger("tap");
                     }, 1000);
                 }
-            }, 3000);
-              
+            }, 1000);
+
             if(loopCnt <= bufferLoop){
-                setTimeout(func, 5000);
+                setTimeout(func, 3000);
             }
             else{
                 loopCnt = 0;
-                setTimeout(func, 30000);
+                setTimeout(func, 15000);
             }
         }
-        else setTimeout(func, 5000);
+        else setTimeout(func, 3000);
     }
 
     setTimeout(func, 5000);
@@ -285,7 +285,7 @@ function raid() {
             // setTimeout(() => {
             //     $("#wrapper > div.contents > div.cnt-raid > div.btn-auto").trigger("tap");
             // }, 1800);
-            
+
         } else if (loopCount < maxLoop) {
             setTimeout(func, 100);
         }
@@ -307,11 +307,11 @@ function quick_raid() {
                 location.reload();
             }, 2000);
         } else if (loopCount < maxLoop) {
-            setTimeout(func, 2000);
+            setTimeout(func, 5000);
         }
     }
 
-    setTimeout(func, 2000);
+    setTimeout(func, 5000);
 }
 
 function delay(time) {
@@ -364,6 +364,7 @@ function run(last) {
                 console.log('pop BTN');
                 setTimeout(popOK, 2000);
             }
+            // setTimeout(quick_raid(), 5000);
             quick_raid();
         }
         l = "raid";
@@ -396,7 +397,7 @@ function run(last) {
 setTimeout(() => run(null), 1500);
 
 window.hentci = {
-    quest, 
+    quest,
     raid,
     quick_raid,
     result,
