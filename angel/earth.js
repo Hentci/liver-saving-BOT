@@ -141,14 +141,9 @@ function run(last) {
             result();
         }
         else{
-            if (checkPopBtn()) {
-                popOK();
-                setTimeout(func, 3000);
-            }
 
             if(checkNxtBtn()){
-                popNxt();
-                setTimeout(func, 2000);
+                setTimeout(popNxt, 2000);
             }
 
         }
