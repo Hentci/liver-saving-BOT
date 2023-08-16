@@ -26,12 +26,13 @@ function quest() {
         if(checkAngelBtn()) {
             setTimeout(() => {
                 $("#cnt-normal-quest > div > div > div:nth-child(5) > div > div.btn-stage-detail").trigger("tap");
-            }, 1000);
+            }, 100);
+
+            setTimeout(() => {
+                $("#pop > div > div.prt-popup-body > div > div > div:nth-child(3) > div.btn-set-quest.ico-clear").trigger("tap");
+            }, 100);
         } 
 
-        setTimeout(() => {
-            $("#pop > div > div.prt-popup-body > div > div > div:nth-child(3) > div.btn-set-quest.ico-clear").trigger("tap");
-        }, 100);
         
         // #cnt-quest > div.prt-supporter-list.prt-module > div.prt-supporter-attribute.type2.selected > div:nth-child(3) > div.prt-supporter-info > div.prt-supporter-detail > div.prt-supporter-summon.js-prt-supporter-summon > span.js-summon-name
         if(checkQueBtn()) {
@@ -61,7 +62,7 @@ function quest() {
                 $("#wrapper > div.contents > div.pop-deck.supporter > div.prt-btn-deck > div.btn-usual-ok.se-quest-start").trigger("tap");
             }, 3000);
         } else if(loopCount < maxLoop){
-            setTimeout(func, 100);
+            setTimeout(func, 1000);
         }
     }
     func();
