@@ -27,9 +27,7 @@ function quest() {
             setTimeout(() => {
                 $("#cnt-normal-quest > div > div > div:nth-child(5) > div > div.btn-stage-detail").trigger("tap");
             }, 1000);
-        } else if(loopCount < maxLoop){
-            setTimeout(func, 100);
-        }
+        } 
 
         setTimeout(() => {
             $("#pop > div > div.prt-popup-body > div > div > div:nth-child(3) > div.btn-set-quest.ico-clear").trigger("tap");
