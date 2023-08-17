@@ -93,15 +93,15 @@ function result() {
 }
 
 function clickArcumBoss() {
-    const checkBoss = () => $("#cnt-division > div > div.prt-division-list > div > div.prt-quest-list.btn-quest-list.event-target").length === 1
-
+    const checkBoss = () => $("#cnt-division > div > div.prt-division-list > div > div.prt-quest-list.btn-quest-list").length === 1
+    
     const maxLoop = 50;
     let loopCount = 0;
 
     const func = () => {
         loopCount++;
         if(checkBoss()){
-            $("#cnt-division > div > div.prt-division-list > div > div.prt-quest-list.btn-quest-list.event-target").trigger("tap");
+            $("#cnt-division > div > div.prt-division-list > div > div.prt-quest-list.btn-quest-list").trigger("tap");
             setTimeout(() => {
                 $("#pop > div > div.prt-popup-footer > div.btn-offer").trigger("tap");
             }, 1000);
@@ -131,7 +131,7 @@ function run(last) {
             if (checkNoAutoBtn()){
                 setTimeout(() => {
                     location.reload();
-                }, 10000)
+                }, 5000);
             }
         }
 
