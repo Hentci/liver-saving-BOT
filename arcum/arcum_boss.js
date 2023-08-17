@@ -36,9 +36,10 @@ function replicard() {
     func();
 }
 
+const checkBGBtn = () => $("#wrapper > div.contents > div.cnt-raid > div.prt-start-direction > div.prt-black-bg").length === 1;
+
 function raid() {
 
-    const checkBGBtn = () => $("#wrapper > div.contents > div.cnt-raid > div.prt-start-direction > div.prt-black-bg").length === 1;
     const checkAttBtn = () => $("#cnt-raid-information > div.btn-attack-start.display-on").length === 1;
     const maxLoop = 50;
     let loopCount = 0;
@@ -48,12 +49,11 @@ function raid() {
         // #pop > div > div.prt-popup-footer > div
         if (checkBGBtn()) {
             $("#wrapper > div.contents > div.cnt-raid > div.prt-start-direction > div.prt-black-bg").trigger("tap");
-
             // setTimeout(() => {
             //     $("#wrapper > div.contents > div.cnt-raid > div.btn-auto").trigger("tap");
             // }, 1800);
         } else if (loopCount < maxLoop) {
-            setTimeout(func, 100);
+            setTimeout(func, 800);
         }
     }
 
@@ -61,11 +61,15 @@ function raid() {
 }
 
 function result() {
-    const checkTresure = () => $("#pop > div > div.prt-popup-footer > div.btn-usual-close").length === 1
-    const popClose = () => $("#pop > div > div.prt-popup-footer > div.btn-usual-close").trigger("tap")
+    const checkTresure = () => $("#pop > div > div.prt-popup-footer > div.btn-usual-close").length === 1;
+    const popClose = () => $("#pop > div > div.prt-popup-footer > div.btn-usual-close").trigger("tap");
     const popOK = () => $("#pop > div > div.prt-popup-footer > div").trigger("tap");
     const checkPopBtn = () => $("#pop > div > div.prt-popup-footer > div").length > 0;
+    const checkToAreaBtn = () => $("#cnt-result > div.prt-result-cnt > div.prt-button-area.upper > div.btn-control").length === 1;
+    const maxLoop = 50;
+    let loopCnt = 0;
     const func = () => {
+        loopCnt++;
         if (checkTresure()){
             popClose();
             setTimeout(func, 3000);
@@ -73,11 +77,15 @@ function result() {
 
         if (checkPopBtn()) {
             popOK();
-            setTimeout(func, 3000);
-        } else {
+        }
+
+        if (checkToAreaBtn()){
             setTimeout(() => {
-                $("#cnt-result > div.prt-result-cnt > div.prt-button-area.upper > div.btn-retry.cnt-quest").trigger("tap");
-            }, 5000);
+                $("#cnt-result > div.prt-result-cnt > div.prt-button-area.upper > div.btn-control").trigger("tap");
+            }, 2000);
+        } else if(loopCnt < maxLoop){
+
+            setTimeout(func, 1000);
         }
     }
     
@@ -91,11 +99,12 @@ function clickArcumBoss() {
     let loopCount = 0;
 
     const func = () => {
+        loopCount++;
         if(checkBoss()){
             $("#cnt-division > div > div.prt-division-list > div > div.prt-quest-list.btn-quest-list.event-target").trigger("tap");
             setTimeout(() => {
                 $("#pop > div > div.prt-popup-footer > div.btn-offer").trigger("tap");
-            }, 2000);
+            }, 1000);
         } else if (loopCount < maxLoop){
             setTimeout(func, 500);
         }
@@ -106,6 +115,7 @@ function clickArcumBoss() {
 
 const checkPopBtn = () => $("#pop > div > div.prt-popup-footer > div").length > 0;
 const popOK = () => $("#pop > div > div.prt-popup-footer > div").trigger("tap");
+const checkNoAutoBtn = () => $("#cnt-raid-information > div.img-diagram.display-on").length > 0;
 
 function run(last) {
     let l = null;
@@ -117,7 +127,14 @@ function run(last) {
     } else if (window.location.hash.search("#raid") !== -1) {
         if (last !== "raid") {
             raid();
+        } else {
+            if (checkNoAutoBtn()){
+                setTimeout(() => {
+                    location.reload();
+                }, 10000)
+            }
         }
+
         l = "raid";
     } else if (window.location.hash.search("#result") !== -1) {
         if (last !== "result") {
@@ -126,7 +143,7 @@ function run(last) {
         else{
             if (checkPopBtn()){
                 console.log('pop BTN');
-                setTimeout(popOK, 5000);
+                setTimeout(popOK, 2000);
             }
         }
         l = "result";
@@ -137,10 +154,10 @@ function run(last) {
         l = "replicard/stage"
     }
 
-    setTimeout(() => run(l), 1000);
+    setTimeout(() => run(l), 2000);
 }
 
-setTimeout(() => run(null), 1000);
+setTimeout(() => run(null), 2000);
 
 window.hentci = {
     replicard, 
