@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         arcum_v2
+// @name         arcum_boss
 // @namespace    http://tampermonkey.net/
 // @version      0.1
 // @description  try to take over the world!
@@ -27,7 +27,7 @@ function replicard() {
             // setTimeout(() => {
             //     $("#wrapper > div.contents > div.pop-deck.supporter.is-no-supporter > div.prt-btn-deck > div.btn-usual-ok.se-quest-start").trigger("tap");
             // }, 3000);
- 
+            
         } else if(loopCount < maxLoop){
             setTimeout(func, 500);
         }
@@ -84,16 +84,36 @@ function result() {
     func();
 }
 
+function clickArcumBoss() {
+    const checkBoss = () => $("#cnt-division > div > div.prt-division-list > div > div.prt-quest-list.btn-quest-list.event-target").length === 1
+
+    const maxLoop = 50;
+    let loopCount = 0;
+
+    const func = () => {
+        if(checkBoss()){
+            $("#cnt-division > div > div.prt-division-list > div > div.prt-quest-list.btn-quest-list.event-target").trigger("tap");
+            setTimeout(() => {
+                $("#pop > div > div.prt-popup-footer > div.btn-offer").trigger("tap");
+            }, 2000);
+        } else if (loopCount < maxLoop){
+            setTimeout(func, 500);
+        }
+    }
+
+    func();
+}
+
 const checkPopBtn = () => $("#pop > div > div.prt-popup-footer > div").length > 0;
 const popOK = () => $("#pop > div > div.prt-popup-footer > div").trigger("tap");
 
 function run(last) {
     let l = null;
     if (window.location.hash.search("#replicard/supporter") !== -1) {
-        if (last !== "replicard") {
+        if (last !== "replicard/supporter") {
             replicard();
         }
-        l = "replicard";
+        l = "replicard/supporter";
     } else if (window.location.hash.search("#raid") !== -1) {
         if (last !== "raid") {
             raid();
@@ -110,15 +130,21 @@ function run(last) {
             }
         }
         l = "result";
+    } else if(window.location.hash.search("#replicard/stage") !== -1){
+        if(last !== "replicard/stage") {
+            clickArcumBoss();
+        }
+        l = "replicard/stage"
     }
 
-    setTimeout(() => run(l), 1500);
+    setTimeout(() => run(l), 1000);
 }
 
-setTimeout(() => run(null), 1500);
+setTimeout(() => run(null), 1000);
 
 window.hentci = {
     replicard, 
     raid,
-    result
+    result,
+    clickArcumBoss
 }
