@@ -73,7 +73,7 @@ function result() {
 
         if (checkPopBtn()) {
             popOK();
-            setTimeout(func, 3000);
+            setTimeout(func, 2000);
         } else {
             setTimeout(() => {
                 $("#cnt-result > div.prt-result-cnt > div.prt-button-area.upper > div.btn-retry.cnt-quest").trigger("tap");
@@ -106,7 +106,7 @@ function run(last) {
         else{
             if (checkPopBtn()){
                 console.log('pop BTN');
-                setTimeout(popOK, 5000);
+                setTimeout(popOK, 2000);
             }
         }
         l = "result";
