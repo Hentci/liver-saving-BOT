@@ -29,7 +29,7 @@ function replicard() {
             // }, 3000);
  
         } else if(loopCount < maxLoop){
-            setTimeout(func, 500);
+            setTimeout(func, 100);
         }
     }
     
@@ -86,6 +86,7 @@ function result() {
 
 const checkPopBtn = () => $("#pop > div > div.prt-popup-footer > div").length > 0;
 const popOK = () => $("#pop > div > div.prt-popup-footer > div").trigger("tap");
+const checkNoAutoBtn = () => $("#cnt-raid-information > div.img-diagram.display-on").length > 0;
 
 function run(last) {
     let l = null;
@@ -97,6 +98,12 @@ function run(last) {
     } else if (window.location.hash.search("#raid") !== -1) {
         if (last !== "raid") {
             raid();
+        } else {
+            if (checkNoAutoBtn()){
+                setTimeout(() => {
+                    location.reload();
+                }, 5000)
+            }
         }
         l = "raid";
     } else if (window.location.hash.search("#result") !== -1) {
