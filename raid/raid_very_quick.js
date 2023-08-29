@@ -300,13 +300,21 @@ function quick_raid() {
     let loopCount = 0;
 
     const func = () => {
+        const HPSelector = document.querySelector("#wrapper > div.contents > div.cnt-raid > div.cnt-raid-stage > div.prt-targeting-area.main-tap-area > div.prt-gauge-area > div.btn-enemy-gauge.prt-enemy-percent.alive");
+        var currHP = HPSelector.textContent;
+        // console.log(currHP)
         loopCount++;
         // #pop > div > div.prt-popup-footer > div
         if (!checkAttBtn()) {
             setTimeout(() => {
                 location.reload();
             }, 5000);
-        } else if (loopCount < maxLoop) {
+        } else if (currHP == "0%"){
+            setTimeout(() => {
+                location.reload();
+            }, 5000);   
+        }
+        else if (loopCount < maxLoop) {
             setTimeout(func, 5000);
         }
     }
@@ -361,10 +369,37 @@ function mypage() {
     func();
 }
 
+
+function checkHPZeroBug () {
+    const HPSelector = document.querySelector("#wrapper > div.contents > div.cnt-raid > div.cnt-raid-stage > div.prt-targeting-area.main-tap-area > div.prt-gauge-area > div.btn-enemy-gauge.prt-enemy-percent.alive");
+    var currHP = HPSelector.textContent;
+    const maxLoop = 50;
+    let loopCount = 0;
+
+    console.log(currHP);
+
+    const func = () => {
+        loopCount++;
+
+        if (currHP == "0%") {
+            setTimeout(() => {
+                location.reload();
+            }, 5000);
+        } else if (loopCount < maxLoop) {
+            setTimeout(func, 5000);
+        }
+    }
+
+    setTimeout(func, 5000);
+}
+
 const checkPopBtn = () => $("#pop > div > div.prt-popup-footer > div").length > 0;
 const popOK = () => $("#pop > div > div.prt-popup-footer > div").trigger("tap");
 const resultPopOut = () => $("#wrapper > div.contents > div.cnt-result > div.prt-button-area > a").length > 0;
 const resultPopOK = () => $("#wrapper > div.contents > div.cnt-result > div.prt-button-area > a").trigger("tap");
+
+
+
 
 function run(last) {
     let l = null;
@@ -390,6 +425,7 @@ function run(last) {
             }
             // setTimeout(quick_raid(), 5000);
             quick_raid();
+            // checkHPZeroBug();
         }
         l = "raid";
     } else if (window.location.hash.search("#result_multi") !== -1) {
@@ -433,5 +469,6 @@ window.hentci = {
     quick_raid,
     result,
     select_quest,
-    mypage
+    mypage,
+    checkHPZeroBug
 }
