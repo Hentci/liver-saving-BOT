@@ -397,7 +397,9 @@ const checkPopBtn = () => $("#pop > div > div.prt-popup-footer > div").length > 
 const popOK = () => $("#pop > div > div.prt-popup-footer > div").trigger("tap");
 const resultPopOut = () => $("#wrapper > div.contents > div.cnt-result > div.prt-button-area > a").length > 0;
 const resultPopOK = () => $("#wrapper > div.contents > div.cnt-result > div.prt-button-area > a").trigger("tap");
+const checkNoAutoBtn = () => $("#cnt-raid-information > div.img-diagram.display-on").length > 0;
 
+// TODO
 const checkDiedBtn = () => $("#cnt-raid-information > div.btn-revival").length > 0;
 const clickMyPageBtn = () => $("#treasure-footer > div > div.btn-treasure-footer-mypage").trigger("tap");
 
@@ -426,6 +428,12 @@ function run(last) {
             // setTimeout(quick_raid(), 5000);
             quick_raid();
             // checkHPZeroBug();
+
+            if (checkNoAutoBtn()){
+                setTimeout(() => {
+                    location.reload();
+                }, 5000)
+            }
         }
         l = "raid";
     } else if (window.location.hash.search("#result_multi") !== -1) {
