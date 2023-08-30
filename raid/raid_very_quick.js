@@ -24,22 +24,44 @@ function select_quest() {
     const bufferLoop = 10;
     let loopCnt = 0;
     var questCnt = $("#prt-search-list").children().length
+
+    element = "light";
+
     const findQuest = (questCnt) => {
+
+        // // get fp first
+        // for(var idx = questCnt - 1;idx >= 1;idx--){
+        //     const checkFPQuest = document.querySelector("#prt-search-list > div:nth-child(" + idx.toString() + ") > div.prt-raid-info > div.prt-raid-status > div.prt-use-ap.decreased");
+        //     if(checkFPQuest != null){
+        //         console.log(checkFPQuest);
+        //         return [idx, element];
+        //     }
+        // }
+
         for(var idx = questCnt - 1;idx >= 1;idx--){
             const ele = document.querySelector("#prt-search-list > div:nth-child(" + idx.toString() + ")");
             const questName = ele.getAttribute('data-chapter-name');
             const questInfo = document.querySelector("#prt-search-list > div:nth-child(" + idx.toString() + ") > div.prt-raid-info > div.prt-raid-status > div.prt-raid-gauge > div");
             const raidSubInfo = document.querySelector("#prt-search-list > div:nth-child(" + idx.toString() + ") > div.prt-raid-info > div.prt-raid-subinfo > div.prt-flees-in");
+            const checkFPQuest = document.querySelector("#prt-search-list > div:nth-child(" + idx.toString() + ") > div.prt-raid-info > div.prt-raid-status > div.prt-use-ap.decreased");
             const gauge = questInfo.getAttribute('style');
             const gauge_2 = gauge.slice(-4);
             const gauge_3 = gauge_2.slice(0, 2);
             var num_player = raidSubInfo.textContent.split('/')[0];
             // console.log("num_player: " + num_player);
             // console.log(gauge_3);
-            if(parseInt(gauge_3) >= 50 && parseInt(num_player) <= 5){
-                element = 'dark';
+
+            // current HP and num player
+            // if(parseInt(gauge_3) >= 50 && parseInt(num_player) <= 5){
+            //     return [idx, element];
+            // }
+            
+            // get FP
+            if (checkFPQuest != null){
                 return [idx, element];
             }
+
+
             // else if((questName === "アバターＨＬ") && parseInt(gauge_3) > 35 && parseInt(gauge_3) <= 50){
             //     element = 'light';
             //     return [idx, element];
