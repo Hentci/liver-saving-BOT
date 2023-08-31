@@ -457,13 +457,13 @@ function run(last) {
                 }, 5000)
             }
 
-            const checkDiedBtn = document.querySelector("#cnt-raid-information > div.btn-revival").outerHTML;
+            // const checkDiedBtn = document.querySelector("#cnt-raid-information > div.btn-revival").outerHTML;
             // console.log(checkDiedBtn);
-            if (checkDiedBtn == '<div class="btn-revival" style="display: block;"></div>'){
-                setTimeout(() => {
-                    clickMyPageBtn();
-                }, 1500);
-            }
+            // if (checkDiedBtn == '<div class="btn-revival" style="display: block;"></div>'){
+            //     setTimeout(() => {
+            //         clickMyPageBtn();
+            //     }, 1500);
+            // }
         }
         l = "raid";
     } else if (window.location.hash.search("#result_multi") !== -1) {
