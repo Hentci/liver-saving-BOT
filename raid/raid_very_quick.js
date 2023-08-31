@@ -422,7 +422,7 @@ const resultPopOK = () => $("#wrapper > div.contents > div.cnt-result > div.prt-
 const checkNoAutoBtn = () => $("#cnt-raid-information > div.img-diagram.display-on").length > 0;
 
 // TODO
-const checkDiedBtn = () => $("#cnt-raid-information > div.btn-revival").length > 0; // can't
+
 const clickMyPageBtn = () => $("#treasure-footer > div > div.btn-treasure-footer-mypage").trigger("tap");
 
 function run(last) {
@@ -457,11 +457,13 @@ function run(last) {
                 }, 5000)
             }
 
-            // if (checkDiedBtn()){
-            //     setTimeout(() => {
-            //         clickMyPageBtn();
-            //     }, 1500);
-            // }
+            const checkDiedBtn = document.querySelector("#cnt-raid-information > div.btn-revival").outerHTML;
+            // console.log(checkDiedBtn);
+            if (checkDiedBtn == '<div class="btn-revival" style="display: block;"></div>'){
+                setTimeout(() => {
+                    clickMyPageBtn();
+                }, 1500);
+            }
         }
         l = "raid";
     } else if (window.location.hash.search("#result_multi") !== -1) {
@@ -508,3 +510,6 @@ window.hentci = {
     mypage,
     checkHPZeroBug
 }
+
+
+
