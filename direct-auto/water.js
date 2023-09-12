@@ -113,6 +113,11 @@ function result() {
     func();
 }
 
+const checkPopBtn = () => $("#pop > div > div.prt-popup-footer > div").length > 0;
+const popOK = () => $("#pop > div > div.prt-popup-footer > div").trigger("tap");
+const resultPopOut = () => $("#wrapper > div.contents > div.cnt-result > div.prt-button-area > a").length > 0;
+const resultPopOK = () => $("#wrapper > div.contents > div.cnt-result > div.prt-button-area > a").trigger("tap");
+
 function run(last) {
     let l = null;
     if (window.location.hash.search("#quest") !== -1) {
@@ -123,11 +128,26 @@ function run(last) {
     } else if (window.location.hash.search("#raid") !== -1) {
         if (last !== "raid") {
             raid();
+        } else {
+            if (checkPopBtn()){
+                console.log('pop BTN');
+                setTimeout(popOK, 2000);
+            }
         }
         l = "raid";
     } else if (window.location.hash.search("#result") !== -1) {
         if (last !== "result") {
             result();
+        } else {
+            if (checkPopBtn()){
+                console.log('pop BTN');
+                setTimeout(popOK, 3000);
+            }
+
+            if (resultPopOut()){
+                console.log('result pop BTN');
+                setTimeout(resultPopOK, 3000);
+            }        
         }
         l = "result";
     }
