@@ -114,7 +114,7 @@ function quick_raid() {
         if (!checkAttBtn() && window.location.hash.search("#raid") !== -1) {
             setTimeout(() => {
                 location.reload();
-            }, 2000);
+            }, 1000);
         } else if (loopCount < maxLoop) {
             setTimeout(func, 1000);
         }
@@ -144,7 +144,7 @@ function run(last) {
                 setTimeout(popOK, 2000);
             }
    
-            quick_raid();         
+            setTimeout(quick_raid(), 2000);
         }
         l = "raid";
     } else if (window.location.hash.search("#result") !== -1) {
