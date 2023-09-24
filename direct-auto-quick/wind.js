@@ -143,7 +143,7 @@ function run(last) {
                 console.log('pop BTN');
                 setTimeout(popOK, 2000);
             }
-            setTimeout(quick_raid(), 2000);
+   
             quick_raid();         
         }
         l = "raid";
