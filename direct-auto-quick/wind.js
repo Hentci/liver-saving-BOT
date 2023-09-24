@@ -111,10 +111,10 @@ function quick_raid() {
     const func = () => {
         loopCount++;
         // #pop > div > div.prt-popup-footer > div
-        if (!checkAttBtn()) {
+        if (!checkAttBtn() && window.location.hash.search("#raid") !== -1) {
             setTimeout(() => {
                 location.reload();
-            }, 5000);
+            }, 2000);
         } else if (loopCount < maxLoop) {
             setTimeout(func, 1000);
         }
