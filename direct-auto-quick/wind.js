@@ -20,7 +20,7 @@ function quest() {
     let loopCount = 0;
     const func = () => {
         loopCount++;
-        
+
         // #cnt-quest > div.prt-supporter-list.prt-module > div.prt-supporter-attribute.type2.selected > div:nth-child(3) > div.prt-supporter-info > div.prt-supporter-detail > div.prt-supporter-summon.js-prt-supporter-summon > span.js-summon-name
         if(checkQueBtn()) {
             // $("#cnt-quest > div.prt-supporter-list.prt-module > div:nth-child(5) > div:nth-child(1) > div.prt-button-cover").trigger("tap");
@@ -105,18 +105,21 @@ function result() {
 
 function quick_raid() {
     const checkAttBtn = () => $("#cnt-raid-information > div.btn-attack-start.display-on").length === 1;
+    const checkStampBTN = () => $("#wrapper > div.contents > div.cnt-raid > div.cnt-raid-chat > div.btn-chat.comment.display-on.sub-left").length > 0;
     const maxLoop = 50;
     let loopCount = 0;
 
     const func = () => {
         loopCount++;
         // #pop > div > div.prt-popup-footer > div
-        if (!checkAttBtn() && window.location.hash.search("#raid") !== -1) {
+        // console.log('hehe');
+        // console.log(checkStampBTN());
+        if (checkStampBTN() && window.location.hash.search("#raid") !== -1) {
             setTimeout(() => {
                 location.reload();
-            }, 1000);
+            }, 1150);
         } else if (loopCount < maxLoop) {
-            setTimeout(func, 1000);
+            setTimeout(func, 1150);
         }
     }
 
@@ -143,8 +146,8 @@ function run(last) {
                 console.log('pop BTN');
                 setTimeout(popOK, 2000);
             }
-   
-            setTimeout(quick_raid(), 2000);
+
+            setTimeout(quick_raid(), 3000);
         }
         l = "raid";
     } else if (window.location.hash.search("#result") !== -1) {
@@ -159,7 +162,7 @@ function run(last) {
             if (resultPopOut()){
                 console.log('result pop BTN');
                 setTimeout(resultPopOK, 3000);
-            }        
+            }
         }
         l = "result";
     }
@@ -170,7 +173,7 @@ function run(last) {
 setTimeout(() => run(null), 2000);
 
 window.hentci = {
-    quest, 
+    quest,
     raid,
     result,
     quick_raid
