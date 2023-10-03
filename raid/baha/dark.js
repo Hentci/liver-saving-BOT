@@ -323,6 +323,8 @@ function quick_raid() {
     let loopCount = 0;
 
     const func = () => {
+        const HPSelector = document.querySelector("#wrapper > div.contents > div.cnt-raid > div.cnt-raid-stage > div.prt-targeting-area.main-tap-area > div.prt-gauge-area > div.btn-enemy-gauge.prt-enemy-percent.alive");
+        var currHP = HPSelector.textContent;
         loopCount++;
         // #pop > div > div.prt-popup-footer > div
         // console.log('hehe');
@@ -331,6 +333,10 @@ function quick_raid() {
             setTimeout(() => {
                 location.reload();
             }, 1150);
+        } else if (currHP == "0%"){
+            setTimeout(() => {
+                location.reload();
+            }, 3000);   
         } else if (loopCount < maxLoop) {
             setTimeout(func, 1150);
         }
@@ -349,6 +355,7 @@ function result() {
     const popOK = () => $("#pop > div > div.prt-popup-footer > div").trigger("tap");
     const checkPopBtn = () => $("#pop > div > div.prt-popup-footer > div").length > 0;
     const func = () => {
+        
         if (checkTresure()){
             popClose();
             setTimeout(func, 3000);
