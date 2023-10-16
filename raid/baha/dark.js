@@ -366,7 +366,7 @@ function result() {
             setTimeout(func, 3000);
         } else {
             setTimeout(() => {
-                $("#cnt-result > div.prt-result-cnt > div.prt-button-area.upper > div.btn-retry.cnt-quest").trigger("tap");
+                $("#cnt-result > div.prt-result-cnt > div.prt-button-area.upper > div.btn-control").trigger("tap");
             }, 5000);
         }
     }
