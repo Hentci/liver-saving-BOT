@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         sandglass dark
+// @name         sandglass water
 // @namespace    http://tampermonkey.net/
 // @version      0.1
 // @description  try to take over the world!
@@ -25,7 +25,7 @@ function select_quest() {
     let loopCnt = 0;
     var questCnt = $("#prt-search-list").children().length
 
-    element = "dark";
+    element = "water";
 
     const findQuest = (questCnt) => {
 
