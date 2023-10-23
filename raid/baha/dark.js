@@ -15,6 +15,9 @@ i.style.display = 'none';
 document.body.appendChild(i);
 window.console = i.contentWindow.console;
 
+
+// #wrapper > div.contents > div.cnt-raid > div.prt-multilog-overlayer
+
 var element = "None";
 function select_quest() {
     const checkRaidBtn = () => $("#cnt-quest > div.prt-quest-index > div.prt-quest-base > div.prt-other-quest > div.prt-lead-button > div.prt-multi-button > div > div").length === 1;
@@ -333,7 +336,7 @@ function quick_raid() {
             setTimeout(() => {
                 location.reload();
             }, 1150);
-        } else if (currHP == "0%"){
+        } else if (currHP == "0%" || currHP == "1%"){
             setTimeout(() => {
                 location.reload();
             }, 3000);   
