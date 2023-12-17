@@ -46,7 +46,7 @@ function quest() {
             }
 
             setTimeout(() => {
-                $("#wrapper > div.contents > div.pop-deck.supporter > div.prt-btn-deck > div.btn-usual-ok.se-quest-start").trigger("tap");
+                $("#wrapper > div.contents > div.pop-deck.supporter > div.prt-btn-deck > div.btn-usual-ok.btn-silent-se").trigger("tap");
             }, 3000);
         } else if(loopCount < maxLoop){
             setTimeout(func, 100);
@@ -126,6 +126,7 @@ function quick_raid() {
     setTimeout(func, 1000);
 }
 
+// #cnt-raid-information > div.btn-revival
 function auto_revive() {
     const maxLoop = 50;
     const checkReviveBtn = () => $("#pop > div > div.prt-popup-body > div > div.prt-item-list > div:nth-child(1) > div.btn-event-use").length === 1;
