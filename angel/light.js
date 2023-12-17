@@ -99,6 +99,7 @@ function result() {
     const checkPopBtn = () => $("#pop > div > div.prt-popup-footer > div").length > 0;
     const checkNxtBtn = () => $("#pop > div > div.prt-popup-footer > div.btn-usual-next").length === 1;
     const checkToListBtn = () => $("#cnt-result > div.prt-result-cnt > div.prt-button-area.upper > div.btn-control.longname").length === 1;
+    const checkRetryBtn = () => $("#cnt-result > div.prt-result-cnt > div.prt-button-area.upper > div.btn-retry.cnt-quest").length === 1;
 
     const func = () => {
         if (checkTresure()){
@@ -110,7 +111,7 @@ function result() {
             popOK();
             setTimeout(func, 3000);
         } else {
-            if (checkToListBtn()){
+            if (!checkRetryBtn()){
                 setTimeout(() => {
                     $("#cnt-result > div.prt-result-cnt > div.prt-button-area.upper > div.btn-control.longname").trigger("tap");
                 }, 3000);
