@@ -130,6 +130,7 @@ const checkPopBtn = () => $("#pop > div > div.prt-popup-footer > div").length > 
 const checkNxtBtn = () => $("#pop > div > div.prt-popup-footer > div.btn-usual-next").length === 1;
 const popOK = () => $("#pop > div > div.prt-popup-footer > div").trigger("tap");
 const popNxt = () => $("#pop > div > div.prt-popup-footer > div.btn-usual-next").trigger("tap");
+const checkNoAutoBtn = () => $("#cnt-raid-information > div.img-diagram.display-on").length > 0;
 
 function run(last) {
     let l = null;
@@ -141,6 +142,18 @@ function run(last) {
     } else if (window.location.hash.search("#raid") !== -1) {
         if (last !== "raid") {
             raid();
+        } else {
+            if (checkPopBtn()){
+                console.log('pop BTN');
+                setTimeout(popOK, 2000);
+            }
+
+
+            if (checkNoAutoBtn()){
+                setTimeout(() => {
+                    location.reload();
+                }, 5000)
+            }
         }
         l = "raid";
     } else if (window.location.hash.search("#result") !== -1) {
