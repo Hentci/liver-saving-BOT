@@ -100,7 +100,7 @@ function result() {
     const checkNxtBtn = () => $("#pop > div > div.prt-popup-footer > div.btn-usual-next").length === 1;
     const checkToListBtn = () => $("#cnt-result > div.prt-result-cnt > div.prt-button-area.upper > div.btn-control.longname").length === 1;
     const checkRetryBtn = () => $("#cnt-result > div.prt-result-cnt > div.prt-button-area.upper > div.btn-retry.cnt-quest").length === 1;
-
+    // #pop-force > div > div.prt-popup-body > div
     const func = () => {
         if (checkTresure()){
             popClose();
