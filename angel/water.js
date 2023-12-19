@@ -115,10 +115,12 @@ function result() {
                 setTimeout(() => {
                     $("#cnt-result > div.prt-result-cnt > div.prt-button-area.upper > div.btn-control.longname").trigger("tap");
                 }, 3000);
-            } else {
+            } else if (checkRetryBtn()){
                 setTimeout(() => {
                     $("#cnt-result > div.prt-result-cnt > div.prt-button-area.upper > div.btn-retry.cnt-quest").trigger("tap");
                 }, 5000);
+            } else {
+                setTimeout(func, 3000)
             }
         }
     }
