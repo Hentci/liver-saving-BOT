@@ -166,11 +166,6 @@ function run(last) {
                 setTimeout(popNxt, 2000);
             }
 
-            if (checkPopBtn()){
-                console.log('pop BTN');
-                setTimeout(popOK, 2000);
-            }
-
         }
         l = "result";
     }
