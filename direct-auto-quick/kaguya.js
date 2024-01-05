@@ -115,10 +115,19 @@ function quick_raid() {
         // #pop > div > div.prt-popup-footer > div
         // console.log('hehe');
         // console.log(checkStampBTN());
+        const HPSelector = document.querySelector("#wrapper > div.contents > div.cnt-raid > div.cnt-raid-stage > div.prt-targeting-area.main-tap-area > div.prt-gauge-area > div.btn-enemy-gauge.prt-enemy-percent.alive");
+        var currHP = HPSelector.textContent;
+        var currHP_num = parseInt(currHP.slice(0, -1));
+
+        // console.log(currHP_num);
         if (checkStampBTN() && window.location.hash.search("#raid") !== -1) {
             setTimeout(() => {
                 location.reload();
             }, 1150);
+        } else if (currHP_num != 100){
+            setTimeout(() => {
+                location.reload();
+            }, 500);   
         } else if (loopCount < maxLoop) {
             setTimeout(func, 1150);
         }
