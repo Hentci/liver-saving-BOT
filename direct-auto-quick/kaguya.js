@@ -124,11 +124,13 @@ function quick_raid() {
             setTimeout(() => {
                 location.reload();
             }, 1150);
-        } else if (currHP_num != 100){
-            setTimeout(() => {
-                location.reload();
-            }, 500);   
-        } else if (loopCount < maxLoop) {
+        } 
+        // else if (currHP_num != 100){
+        //     setTimeout(() => {
+        //         location.reload();
+        //     }, 500);   
+        // }
+        else if (loopCount < maxLoop) {
             setTimeout(func, 1150);
         }
     }
