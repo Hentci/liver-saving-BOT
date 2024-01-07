@@ -48,7 +48,7 @@ function quest() {
 
             setTimeout(() => {
                 $("#wrapper > div.contents > div.pop-deck.supporter > div.prt-btn-deck > div.btn-usual-ok.se-quest-start").trigger("tap");
-            }, 3000);
+            }, 2000);
         } else if(loopCount < maxLoop){
             setTimeout(func, 100);
         }
@@ -93,11 +93,11 @@ function result() {
 
         if (checkPopBtn()) {
             popOK();
-            setTimeout(func, 2000);
+            setTimeout(func, 1000);
         } else {
             setTimeout(() => {
                 $("#cnt-result > div.prt-result-cnt > div.prt-button-area.upper > div.btn-retry.cnt-quest").trigger("tap");
-            }, 3000);
+            }, 2000);
         }
     }
 
@@ -118,6 +118,9 @@ function quick_raid() {
         const HPSelector = document.querySelector("#wrapper > div.contents > div.cnt-raid > div.cnt-raid-stage > div.prt-targeting-area.main-tap-area > div.prt-gauge-area > div.btn-enemy-gauge.prt-enemy-percent.alive");
         var currHP = HPSelector.textContent;
         var currHP_num = parseInt(currHP.slice(0, -1));
+        const contribution = document.querySelector("#wrapper > div.contents > div.cnt-raid > div.cnt-multi > div.prt-mvp > div > div.txt-point");
+        const contributionPoints = contribution.textContent;
+        // console.log(contributionPoints);
 
         // console.log(currHP_num);
         if (checkStampBTN() && window.location.hash.search("#raid") !== -1) {
@@ -125,11 +128,16 @@ function quick_raid() {
                 location.reload();
             }, 1150);
         } 
-        // else if (currHP_num != 100){
-        //     setTimeout(() => {
-        //         location.reload();
-        //     }, 500);   
-        // }
+        else if (contributionPoints == "86400pt"){
+            setTimeout(() => {
+                location.reload();
+            }, 500);   
+        }
+        else if (contributionPoints == "256210pt"){
+            setTimeout(() => {
+                location.reload();
+            }, 500);   
+        }
         else if (loopCount < maxLoop) {
             setTimeout(func, 1150);
         }
