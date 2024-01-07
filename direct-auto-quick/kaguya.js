@@ -120,6 +120,7 @@ function quick_raid() {
         var currHP_num = parseInt(currHP.slice(0, -1));
         const contribution = document.querySelector("#wrapper > div.contents > div.cnt-raid > div.cnt-multi > div.prt-mvp > div > div.txt-point");
         const contributionPoints = contribution.textContent;
+        const contributionPoints_num = parseInt(contributionPoints.slice(0, -2));
         // console.log(contributionPoints);
 
         // console.log(currHP_num);
