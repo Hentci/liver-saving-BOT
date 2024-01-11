@@ -332,6 +332,10 @@ function quick_raid() {
         // #pop > div > div.prt-popup-footer > div
         // console.log('hehe');
         // console.log(checkStampBTN());
+        const contribution = document.querySelector("#wrapper > div.contents > div.cnt-raid > div.cnt-multi > div.prt-mvp > div > div.txt-point");
+        const contributionPoints = contribution.textContent;
+        // console.log(contributionPoints);
+        const contributionPoints_num = parseInt(contributionPoints.slice(0, -2));
         if (checkStampBTN() && window.location.hash.search("#raid") !== -1) {
             setTimeout(() => {
                 location.reload();
@@ -340,6 +344,12 @@ function quick_raid() {
             setTimeout(() => {
                 location.reload();
             }, 3000);   
+        }else if (contributionPoints_num >= 2500000){
+            // when too slow, open it
+            // $("#treasure-footer > div > div.btn-treasure-footer-mypage").trigger("tap");
+            // setTimeout(() =>{
+            //     location.reload();
+            // }, 2000); 
         } else if (loopCount < maxLoop) {
             setTimeout(func, 1150);
         }
