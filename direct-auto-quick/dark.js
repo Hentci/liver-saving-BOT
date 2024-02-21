@@ -46,7 +46,7 @@ function quest() {
             }
 
             setTimeout(() => {
-                $("#wrapper > div.contents > div.pop-deck.supporter > div.prt-btn-deck > div.btn-usual-ok.se-quest-start").trigger("tap");
+                $("#wrapper > div.contents > div.pop-deck.supporter > div.prt-btn-deck > div.btn-usual-ok.btn-silent-se").trigger("tap");
             }, 3000);
         } else if(loopCount < maxLoop){
             setTimeout(func, 100);
