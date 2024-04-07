@@ -148,7 +148,7 @@ function run(last) {
                 setTimeout(popOK, 2000);
             }
 
-            setTimeout(quick_raid(), 3000);
+            quick_raid();
 
             
             if (checkNoAutoBtn()){
