@@ -153,7 +153,7 @@ function run(last) {
             
             if (checkNoAutoBtn()){
                 setTimeout(() => {
-                    location.reload();
+                    quick_raid();
                 }, 5000)
             }
         }
