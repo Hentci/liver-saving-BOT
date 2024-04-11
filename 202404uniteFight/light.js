@@ -59,20 +59,24 @@ function raid() {
 
     const checkBGBtn = () => $("#wrapper > div.contents > div.cnt-raid > div.prt-start-direction > div.prt-black-bg").length === 1;
     const checkAttBtn = () => $("#cnt-raid-information > div.btn-attack-start.display-on").length === 1;
-    const maxLoop = 5000;
+    const maxLoop = 500;
     let loopCount = 0;
 
     const func = () => {
         loopCount++;
 
         if (checkBGBtn()) {
-            $("#wrapper > div.contents > div.cnt-raid > div.prt-start-direction > div.prt-black-bg").trigger("tap");
+            console.log('checkBGBtn');
 
+            setTimeout(() => {
+                $("#wrapper > div.contents > div.cnt-raid > div.prt-start-direction > div.prt-black-bg").trigger("tap");
+            }, 1000);
+            console.log('checkBGBtn end');
             // setTimeout(() => {
             //     $("#wrapper > div.contents > div.cnt-raid > div.btn-auto").trigger("tap");
             // }, 1800);
         } else if (loopCount < maxLoop) {
-            setTimeout(func, 20);
+            setTimeout(func, 100);
         }
     }
 
@@ -154,7 +158,7 @@ function run(last) {
             if (checkNoAutoBtn()){
                 setTimeout(() => {
                     location.reload();
-                }, 5000)
+                }, 2000)
             }
         }
         l = "raid";
