@@ -31,7 +31,7 @@ function quest() {
                 if (summonNameElement) {
                     var summonName = summonNameElement.textContent;
                     // console.log(summonName);
-                    if(summonName === "ゼウス"){
+                    if(summonName === "ルシフェル"){
                         $("#cnt-quest > div.prt-supporter-list.prt-module > div:nth-child(8) > div:nth-child("+i.toString()+") > div.prt-button-cover").trigger("tap");
                         noSpecifySummon = false;
                         break;

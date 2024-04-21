@@ -45,9 +45,25 @@ function quest() {
                 $("#cnt-quest > div.prt-supporter-list.prt-module > div:nth-child(3) > div:nth-child(1) > div.prt-button-cover").trigger("tap");
             }
 
+            // setTimeout(() => {
+            //     $("#wrapper > div.contents > div.pop-deck.supporter > div.prt-btn-deck > div.btn-usual-ok.se-quest-start").trigger("tap");
+            // }, 3000);
+
             setTimeout(() => {
-                $("#wrapper > div.contents > div.pop-deck.supporter > div.prt-btn-deck > div.btn-usual-ok.se-quest-start").trigger("tap");
+                if ($("#wrapper > div.contents > div.pop-deck.supporter > div.prt-btn-deck > div.btn-usual-ok.se-quest-start").length === 1) {
+                    // console.log('se-quest-start');
+                    $("#wrapper > div.contents > div.pop-deck.supporter > div.prt-btn-deck > div.btn-usual-ok.se-quest-start").trigger("tap");
+                }
             }, 3000);
+
+            setTimeout(() => {
+                if ($("#wrapper > div.contents > div.pop-deck.supporter > div.prt-btn-deck > div.btn-usual-ok.btn-silent-se").length === 1) {
+                    // console.log('btn-silent-se');
+                    $("#wrapper > div.contents > div.pop-deck.supporter > div.prt-btn-deck > div.btn-usual-ok.btn-silent-se").trigger("tap");
+                }
+            }, 3000);
+
+
         } else if(loopCount < maxLoop){
             setTimeout(func, 100);
         }
