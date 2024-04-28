@@ -302,10 +302,10 @@ function raid() {
         loopCount++;
         // #pop > div > div.prt-popup-footer > div
         if (checkBGBtn()) {
-            $("#wrapper > div.contents > div.cnt-raid > div.prt-start-direction > div.prt-black-bg").trigger("tap");
-            // setTimeout(() => {
-            //     $("#wrapper > div.contents > div.cnt-raid > div.prt-start-direction > div.prt-black-bg").trigger("tap");
-            // }, 300);
+            // $("#wrapper > div.contents > div.cnt-raid > div.prt-start-direction > div.prt-black-bg").trigger("tap");
+            setTimeout(() => {
+                $("#wrapper > div.contents > div.cnt-raid > div.prt-start-direction > div.prt-black-bg").trigger("tap");
+            }, 1000);
 
             // setTimeout(() => {
             //     $("#wrapper > div.contents > div.cnt-raid > div.btn-auto").trigger("tap");
