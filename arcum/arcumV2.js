@@ -27,12 +27,12 @@ function replicard() {
             // setTimeout(() => {
             //     $("#wrapper > div.contents > div.pop-deck.supporter.is-no-supporter > div.prt-btn-deck > div.btn-usual-ok.se-quest-start").trigger("tap");
             // }, 3000);
- 
+
         } else if(loopCount < maxLoop){
             setTimeout(func, 100);
         }
     }
-    
+
     func();
 }
 
@@ -47,8 +47,10 @@ function raid() {
         loopCount++;
         // #pop > div > div.prt-popup-footer > div
         if (checkBGBtn()) {
-            $("#wrapper > div.contents > div.cnt-raid > div.prt-start-direction > div.prt-black-bg").trigger("tap");
-
+           // $("#wrapper > div.contents > div.cnt-raid > div.prt-start-direction > div.prt-black-bg").trigger("tap");
+             setTimeout(() => {
+                 $("#wrapper > div.contents > div.cnt-raid > div.prt-start-direction > div.prt-black-bg").trigger("tap");
+             }, 500);
             // setTimeout(() => {
             //     $("#wrapper > div.contents > div.cnt-raid > div.btn-auto").trigger("tap");
             // }, 1800);
@@ -80,8 +82,37 @@ function result() {
             }, 5000);
         }
     }
-    
+
     func();
+}
+
+function quick_raid() {
+    const checkAttBtn = () => $("#cnt-raid-information > div.btn-attack-start.display-on").length === 1;
+    const checkStampBTN = () => $("#wrapper > div.contents > div.cnt-raid > div.cnt-raid-chat > div.btn-chat.comment.display-on.sub-left").length > 0;
+    const maxLoop = 50;
+    let loopCount = 0;
+
+    const func = () => {
+        const HPSelector = document.querySelector("#wrapper > div.contents > div.cnt-raid > div.cnt-raid-stage > div.prt-targeting-area.main-tap-area > div.prt-gauge-area > div.btn-enemy-gauge.prt-enemy-percent.alive");
+        var currHP = HPSelector.textContent;
+        loopCount++;
+        // #pop > div > div.prt-popup-footer > div
+        // console.log('hehe');
+        // console.log(checkStampBTN());
+        if (checkStampBTN() && window.location.hash.search("#raid") !== -1) {
+            setTimeout(() => {
+                location.reload();
+            }, 1150);
+        } else if (currHP == "0%"){
+            setTimeout(() => {
+                location.reload();
+            }, 3000);
+        } else if (loopCount < maxLoop) {
+            setTimeout(func, 1150);
+        }
+    }
+
+    setTimeout(func, 1000);
 }
 
 const checkPopBtn = () => $("#pop > div > div.prt-popup-footer > div").length > 0;
@@ -99,10 +130,12 @@ function run(last) {
         if (last !== "raid") {
             raid();
         } else {
+
+            quick_raid();
             if (checkNoAutoBtn()){
                 setTimeout(() => {
                     location.reload();
-                }, 5000)
+                }, 2000)
             }
         }
         l = "raid";
@@ -125,7 +158,7 @@ function run(last) {
 setTimeout(() => run(null), 1500);
 
 window.hentci = {
-    replicard, 
+    replicard,
     raid,
     result
 }
