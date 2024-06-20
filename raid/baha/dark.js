@@ -22,8 +22,9 @@ var element = "None";
 function select_quest() {
     const checkRaidBtn = () => $("#cnt-quest > div.prt-quest-index > div.prt-quest-base > div.prt-other-quest > div.prt-lead-button > div.prt-multi-button > div > div").length === 1;
     const checkRaidBtn2 = () => $("#cnt-quest > div.prt-quest-index > div.prt-quest-base > div.prt-other-quest > div.prt-lead-button > div.prt-multi-button > div").length === 1;
-    const checkMultiBattleBtn = () => $("#prt-assist-search > div.prt-module > div.btn-search-refresh").length === 1;
+    const checkMultiBattleBtn = () => $("#prt-assist-search > div.prt-assist-frame > div.btn-search-refresh").length === 1;
     const checkCanGetQuestCnt = () => $("#prt-search-list").length === 1;
+    
     const bufferLoop = 10;
     let loopCnt = 0;
     var questCnt = $("#prt-search-list").children().length
@@ -87,7 +88,7 @@ function select_quest() {
         }
 
         if (checkMultiBattleBtn){
-            $("#prt-assist-search > div.prt-module > div.btn-search-refresh").trigger("tap");
+            $("#prt-assist-search > div.prt-assist-frame > div.btn-search-refresh").trigger("tap");
         }
 
         if (checkCanGetQuestCnt){
@@ -305,7 +306,7 @@ function raid() {
             // $("#wrapper > div.contents > div.cnt-raid > div.prt-start-direction > div.prt-black-bg").trigger("tap");
             setTimeout(() => {
                 $("#wrapper > div.contents > div.cnt-raid > div.prt-start-direction > div.prt-black-bg").trigger("tap");
-            }, 1000);
+            }, 800);
 
             // setTimeout(() => {
             //     $("#wrapper > div.contents > div.cnt-raid > div.btn-auto").trigger("tap");
