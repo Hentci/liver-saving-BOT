@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         quick auto dark
+// @name         unite luci fight
 // @namespace    http://tampermonkey.net/
 // @version      0.1
 // @description  try to take over the world!
@@ -26,13 +26,13 @@ function quest() {
             // $("#cnt-quest > div.prt-supporter-list.prt-module > div:nth-child(5) > div:nth-child(1) > div.prt-button-cover").trigger("tap");
             var noSpecifySummon = true;
             for(var i = 1;i <= 10;i++){
-                var summonNameElement = document.querySelector("#cnt-quest > div.prt-supporter-list.prt-module > div.prt-supporter-attribute.type6.selected > div:nth-child("+i.toString()+") > div.prt-supporter-info > div.prt-supporter-detail > div.prt-supporter-summon.js-prt-supporter-summon > span.js-summon-name");
+                var summonNameElement = document.querySelector("#cnt-quest > div.prt-supporter-list.prt-module > div.prt-supporter-attribute.type5.selected > div:nth-child("+i.toString()+") > div.prt-supporter-info > div.prt-supporter-detail > div.prt-supporter-summon.js-prt-supporter-summon > span.js-summon-name");
                 // 確認元素存在並印出 summon-name 的內容
                 if (summonNameElement) {
                     var summonName = summonNameElement.textContent;
                     // console.log(summonName);
-                    if(summonName === "ハデス"){
-                        $("#cnt-quest > div.prt-supporter-list.prt-module > div:nth-child(9) > div:nth-child("+i.toString()+") > div.prt-button-cover").trigger("tap");
+                    if(summonName === "ルシフェル"){
+                        $("#cnt-quest > div.prt-supporter-list.prt-module > div:nth-child(8) > div:nth-child("+i.toString()+") > div.prt-button-cover").trigger("tap");
                         noSpecifySummon = false;
                         break;
                     }
@@ -42,11 +42,11 @@ function quest() {
             }
 
             if(noSpecifySummon){
-                $("#cnt-quest > div.prt-supporter-list.prt-module > div:nth-child(9) > div:nth-child(1) > div.prt-button-cover").trigger("tap");
+                $("#cnt-quest > div.prt-supporter-list.prt-module > div:nth-child(8) > div:nth-child(1) > div.prt-button-cover").trigger("tap");
             }
 
             setTimeout(() => {
-                $("#wrapper > div.contents > div.pop-deck.supporter > div.prt-btn-deck > div.btn-usual-ok.btn-silent-se").trigger("tap");
+                $("#wrapper > div.contents > div.pop-deck.supporter > div.prt-btn-deck > div.btn-usual-ok.se-quest-start").trigger("tap");
             }, 3000);
         } else if(loopCount < maxLoop){
             setTimeout(func, 100);
@@ -59,18 +59,22 @@ function raid() {
 
     const checkBGBtn = () => $("#wrapper > div.contents > div.cnt-raid > div.prt-start-direction > div.prt-black-bg").length === 1;
     const checkAttBtn = () => $("#cnt-raid-information > div.btn-attack-start.display-on").length === 1;
-    const maxLoop = 50;
+    const maxLoop = 500;
     let loopCount = 0;
 
     const func = () => {
         loopCount++;
 
         if (checkBGBtn()) {
-            // $("#wrapper > div.contents > div.cnt-raid > div.prt-start-direction > div.prt-black-bg").trigger("tap");
+            console.log('checkBGBtn');
 
             setTimeout(() => {
                 $("#wrapper > div.contents > div.cnt-raid > div.prt-start-direction > div.prt-black-bg").trigger("tap");
-            }, 800);
+            }, 1000);
+            console.log('checkBGBtn end');
+            // setTimeout(() => {
+            //     $("#wrapper > div.contents > div.cnt-raid > div.btn-auto").trigger("tap");
+            // }, 1800);
         } else if (loopCount < maxLoop) {
             setTimeout(func, 100);
         }
@@ -148,13 +152,13 @@ function run(last) {
                 setTimeout(popOK, 2000);
             }
 
-            setTimeout(quick_raid(), 3000);
+            quick_raid();
 
-            
+
             if (checkNoAutoBtn()){
                 setTimeout(() => {
                     location.reload();
-                }, 5000)
+                }, 2000)
             }
         }
         l = "raid";
