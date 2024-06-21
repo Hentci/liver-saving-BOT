@@ -67,11 +67,11 @@ function raid() {
         loopCount++;
 
         if (checkBGBtn()) {
-            $("#wrapper > div.contents > div.cnt-raid > div.prt-start-direction > div.prt-black-bg").trigger("tap");
+            // $("#wrapper > div.contents > div.cnt-raid > div.prt-start-direction > div.prt-black-bg").trigger("tap");
 
-            // setTimeout(() => {
-            //     $("#wrapper > div.contents > div.cnt-raid > div.btn-auto").trigger("tap");
-            // }, 1800);
+            setTimeout(() => {
+                $("#wrapper > div.contents > div.cnt-raid > div.prt-start-direction > div.prt-black-bg").trigger("tap");
+            }, 800);
         } else if (loopCount < maxLoop) {
             setTimeout(func, 100);
         }
