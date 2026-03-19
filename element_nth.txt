@@ -1,0 +1,7 @@
+5 -> fire
+6 -> 
+7 -> 
+8 -> wind
+9 -> light
+10 -> dark
+4 -> no-specify
