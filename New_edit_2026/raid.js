@@ -16,7 +16,7 @@ document.body.appendChild(i);
 window.console = i.contentWindow.console;
 
 // ── 全域變數 ─────────────────────────────────────────────────────────────────
-var element = "None";
+var element = "dark";
 
 // ── 工具函式 ─────────────────────────────────────────────────────────────────
 
@@ -80,7 +80,7 @@ const fireSummon  = () => selectSummon("type1", 5,  "コロッサス・マグナ
 const waterSummon = () => selectSummon("type2", 6,  "ヴァルナ",            null,      10);
 const earthSummon = () => selectSummon("type3", 7,  "ユグドラシル・マグナ", "Lv 250",     15);
 const lightSummon = () => selectSummon("type5", 9,  "ルシフェル",          "Lv 250",  15);
-const darkSummon  = () => selectSummon("type6", 10, "セレスト・マグナ",    "Lv 250",  15);
+const darkSummon  = () => selectSummon("type6", 10, "ハデス",    "Lv 250",  15); //セレスト・マグナ, ハデス
 // const nullSummon = () => selectSummon("type0", 4, "（無屬性召喚石名）",  null,      10); // 無屬性，目前不使用
 
 // ── 任務搜尋 ─────────────────────────────────────────────────────────────────
@@ -93,7 +93,6 @@ function select_quest() {
 
     const BUFFER_LOOP = 10;
     let loopCnt = 0;
-    element = "earth";
 
     /**
      * 從清單中找出符合條件的任務索引
@@ -348,6 +347,9 @@ function run(last) {
 
 // ── 啟動 ─────────────────────────────────────────────────────────────────────
 setTimeout(() => run(null), 1000);
+
+// ── 定時 Reload（每 5 分鐘） ──────────────────────────────────────────────────
+setInterval(() => location.reload(), 5 * 60 * 1000);
 
 // ── 對外暴露的 API（方便 Console 手動呼叫）───────────────────────────────────
 window.hentci = {
