@@ -16,7 +16,7 @@ document.body.appendChild(i);
 window.console = i.contentWindow.console;
 
 // ── 全域變數 ─────────────────────────────────────────────────────────────────
-var element = "water";
+var element = "light";
 
 // ── 召喚石選擇 ───────────────────────────────────────────────────────────────
 
@@ -100,7 +100,12 @@ function quest() {
             }
 
             setTimeout(() => {
-                $("#wrapper > div.contents > div.pop-deck.supporter > div.prt-btn-deck > div.btn-usual-ok.se-quest-start").trigger("tap");
+                const $startBtn = $("#wrapper > div.contents > div.pop-deck.supporter > div.prt-btn-deck > div.btn-usual-ok.se-quest-start");
+                if ($startBtn.length > 0) {
+                    $startBtn.trigger("tap");
+                } else {
+                    $("#wrapper > div.contents > div.pop-deck.supporter > div.prt-btn-deck > div.btn-usual-ok.btn-silent-se").trigger("tap");
+                }
             }, 3000);
         } else if (loopCount < MAX_LOOP) {
             setTimeout(func, 100);
@@ -207,7 +212,7 @@ function run(last) {
                 setTimeout(popOK, 2000);
             }
 
-            quick_raid();
+      //      quick_raid();
 
 
             if (checkNoAutoBtn()){
